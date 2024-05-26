@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="DropStyle.css">
+</head>
+
+<body>
+    <div class="Drop-hero">
+        <nav>
+            <img src="..\Resources\logo.png" class="Drop-logo">
+            <ul>
+                <li><a class="#">Home</a></li>
+                <li><a class="#">Feature</a></li>
+                <li><a class="#">Shop</a></li>
+                <li><a class="#">Adopt</a></li>
+                <li><a class="#">AboutUs</a></li>
+            </ul>
+            <img src="..\Resources\logo.png" class="Drop-userPic" onclick="toggleMenu()">
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menue">
+                    <div class="user-info">
+                        <img src="..\Resources\logo.png">
+                        <h3>Bishal's Dog</h3>
+                    </div>
+                    <hr>
+                    <a href="#" class="sub-menu-link">
+                        <img src="..\Resources\logo.png">
+                        <p>Edit Profile</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="..\Resources\logo.png">
+                        <p>Change Password</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="..\Resources\logo.png">
+                        <p>Logout</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="..\Resources\logo.png">
+                        <p>About Us</p>
+                        <span>></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="..\Resources\logo.png">
+                        <p>Nothing</p>
+                        <span>></span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <script>
+        let subMenu = document.getElementById("subMenu");
+        function toggleMenu(){
+            subMenu.classList.toggle("open-menu");
+        }
+    </script>
+</body>
+
+</html>
