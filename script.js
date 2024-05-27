@@ -7,6 +7,8 @@ $(document).ready(function () {
     });
 });
 
+// Menu Bar
+
 function showSidebar(){
     const sidebar = document.querySelector('.sidebar')
     sidebar.style.display = 'flex'

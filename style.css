@@ -9,7 +9,7 @@ body {
   position: relative;
 }
 
-/*nav Section*/
+/* ----------------------------------------- nav Section ----------------------------------------*/
 nav {
   position: fixed;
   z-index: 1000;
@@ -83,8 +83,97 @@ nav {
   object-fit: cover;
 }
 
+/* ----------------------------------- Drop Down Menu ---------------------------------*/
+.sub-menu-wrap {
+  position: absolute;
+  top: 100%;
+  left: 70%;
+  width: 320px;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height 0.5s;
+}
 
-/* hero section or welcome */
+.sub-menu-wrap.open-menu {
+  max-height: 400px;
+}
+
+.sub-menue {
+  background: #fff;
+  padding: 20px;
+  margin: 10px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.user-info h3 {
+  font-weight: 500;
+}
+
+.user-info img {
+  width: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.sub-menue hr {
+  border: 0;
+  height: 1px;
+  width: 100%;
+  background: #ccc;
+  margin: 15px 0 10px;
+}
+
+.sub-menu-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #525252;
+  margin: 12px 0;
+}
+
+.sub-menu-link i {
+  font-size: 24px;
+  margin-right: 15px;
+  color: #525252;
+}
+
+.sub-menu-link:hover i {
+  color: #000;
+}
+
+.sub-menu-link p {
+  width: 100%;
+  font-size: 18px;
+  font-weight: 100;
+}
+
+.sub-menu-link img {
+  width: 40px;
+  background: #e5e5e5;
+  border-radius: 50%;
+  padding: 8px;
+  margin-right: 15px;
+}
+
+.sub-menu-link span {
+  font-size: 22px;
+  transform: transform 0.5s;
+}
+
+.sub-menu-link:hover span {
+  transform: translateX(5px);
+}
+
+.sub-menu-link:hover p {
+  font-weight: 600;
+}
+
+
+/* --------------------------------------hero section or welcome--------------------------------- */
 
 .heroSection {
   position: relative;
@@ -173,7 +262,7 @@ nav {
   display: flex;
 }
 
-/* adoption section start from here */
+/*------------------------------------------ adoption section start from here ------------------------*/
 .adopt-section {
   height: auto;
   margin: 15px;
@@ -239,7 +328,7 @@ nav {
   opacity: 1;
 }
 
-/* treanding product section  */
+/* ----------------------------------  treanding product section --------------------------------  */
 #trending-product {
   margin: 5px 15px 10px 15px;
   border: 2px solid black;
@@ -359,7 +448,7 @@ nav {
   transform: scale(1.2);
 }
 
-/* Tranning Section  */
+/* -------------------------------------------- Tranning Section --------------------------------- */
 .training-box {
   height: auto;
   text-align: center;

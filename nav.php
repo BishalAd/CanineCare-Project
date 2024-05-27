@@ -1,117 +1,25 @@
 <html>
-<style>
-    .sub-menu-wrap {
-        position: absolute;
-        top: 100%;
-        left: 70%;
-        width: 320px;
-        max-height: 0px;
-        overflow: hidden;
-        transition: max-height 0.5s;
-    }
-
-    .sub-menu-wrap.open-menu {
-        max-height: 400px;
-    }
-
-    .sub-menue {
-        background: #fff;
-        padding: 20px;
-        margin: 10px;
-    }
-
-    .user-info {
-        display: flex;
-        align-items: center;
-    }
-
-    .user-info h3 {
-        font-weight: 500;
-    }
-
-    .user-info img {
-        width: 60px;
-        border-radius: 50%;
-        margin-right: 15px;
-    }
-
-    .sub-menue hr {
-        border: 0;
-        height: 1px;
-        width: 100%;
-        background: #ccc;
-        margin: 15px 0 10px;
-    }
-
-    .sub-menu-link {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        color: #525252;
-        margin: 12px 0;
-    }
-
-    .sub-menu-link i {
-        font-size: 24px;
-        margin-right: 15px;
-        color: #525252;
-    }
-
-    .sub-menu-link:hover i {
-        color: #000;
-    }
-
-    .sub-menu-link p {
-        width: 100%;
-        font-size: 18px;
-        font-weight: 100;
-    }
-
-    .sub-menu-link img {
-        width: 40px;
-        background: #e5e5e5;
-        border-radius: 50%;
-        padding: 8px;
-        margin-right: 15px;
-    }
-
-    .sub-menu-link span {
-        font-size: 22px;
-        transform: transform 0.5s;
-    }
-
-    .sub-menu-link:hover span {
-        transform: translateX(5px);
-    }
-
-    .sub-menu-link:hover p {
-        font-weight: 600;
-    }
-</style>
-
 <body>
-
-
     <nav>
         <div class="logo">
-            <img src="Black logo - no background.svg" alt="CanineCare">
+            <img src="Resources/Black logo - no background.svg" alt="CanineCare">
         </div>
         <div class="Main-Nav">
             <ul class="sidebar">
                 <li onclick="hideSidebar()"><a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="30" viewBox="0 -960 960 960" width="30">
                             <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
                         </svg></a></li>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="Adopt/AdoptSection.html">Adopt</a></li>
-                <li><a href="Shop/Shop.php">Shop</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="Adopt/AdoptSection.php">Adopt</a></li>
+                <li><a href="Shop.php">Shop</a></li>
                 <li><a href="Training.html">Training</a></li>
                 <li><a href="Care.html">Care</a></li>
                 <li><a href="AboutUs.html">About Us</a></li>
             </ul>
             <ul class="horizontal-nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="Adopt/AdoptSection.html">Adopt</a></li>
-                <li><a href="Shop/Shop.php">Shop</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="Adopt/AdoptSection.php">Adopt</a></li>
+                <li><a href="Shop.php">Shop</a></li>
                 <li><a href="Training.html">Training</a></li>
                 <li><a href="Care.html">Care</a></li>
                 <li><a href="AboutUs.html">About Us</a></li>
@@ -164,7 +72,7 @@
                     <div class="sub-menu-wrap" id="subMenu">
                 <div class="sub-menue">
                     <div class="user-info">';
-                    echo '<img src="'. $profileImage. '">';
+                    echo '<img src="' . $profileImage . '">';
                     echo '<h3>' . $FullName . '</h3>';
                     echo '</div>
                     <hr>
@@ -173,12 +81,12 @@
                         <p>Edit Profile</p>
                         <span>></span>
                     </a>
-                    <a href="#" class="sub-menu-link">
+                    <a href="ChangePassword.php" class="sub-menu-link">
                         <i class="fa-solid fa-key"></i>
                         <p>Change Password</p>
                         <span>></span>
                     </a>
-                    <a href="RegisterAndLogin/logout.php" class="sub-menu-link">
+                    <a href="logout.php" class="sub-menu-link">
                         <i class="fa-solid fa-sign-out-alt"></i>
                         <p>Logout</p>
                         <span>></span>
@@ -189,12 +97,12 @@
 
                     ';
                 } else {
-                    echo "<a href='RegisterAndLogin/login.html'>
+                    echo "<a href='login.php'>
                         <i class='fa-solid fa-right-to-bracket'></i>
                       </a>";
                 }
             } else {
-                echo "<a href='RegisterAndLogin/login.html'>
+                echo "<a href='login.php'>
                     <i class='fa-solid fa-right-to-bracket'></i>
                   </a>";
             }
