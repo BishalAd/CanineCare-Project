@@ -26,9 +26,18 @@
                 <p>Your pet's health and <br>wellbeing is our top priority.</p>
             </div>
         </div>
-        <a href="AddProduct.php"><button>Add Product</button></a>
-
         <?php
+        
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        // Check if user is logged in and is a business account
+        if (!isset($_SESSION['id']) || (isset($_SESSION['role']) && $_SESSION['role'] != 'business')) {
+            $hideButton = true; // Set flag to hide the button
+        } else {
+            $hideButton = false; // Set flag to show the button
+        }
+
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -73,7 +82,11 @@
         $conn->close();
         ?>
 
+        <?php if (!$hideButton): ?>
+            <a href="AddProduct.php" class="AddProductBtn"><button>Add Product</button></a>
+        <?php endif; ?>
     </main>
+
 
     <script src="script.js"></script>
 </body>

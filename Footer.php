@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<footer>
+    <footer>
         <div class="row">
             <div class="col">
-                <img src="Resources/White logo.svg" alt="logo" class="logo">
+                <a href="index.php">
+                    <img src="Resources/White logo.svg" alt="logo" class="logo">
+                </a>
                 <p>Welcome to Canine Care, your ultimate destination for all things dog-related. From adoption services
                     to premium dog food and accessories, we're here to cater to every aspect of your canine companion's
                     needs. Our platform also offers valuable information on dog health care and access to professional
@@ -16,9 +20,9 @@
             <div class="col">
                 <h3>Quick Links</h3>
                 <ul class="Footer-list">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Adopt</a></li>
-                    <li><a href="Shop/Shop.php">Shop</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="adopt.php">Adopt</a></li>
+                    <li><a href="Shop.php">Shop</a></li>
                     <li><a href="">Traning</a></li>
                     <li><a href="">Care</a></li>
                     <li><a href="">About Us</a></li>
@@ -33,6 +37,8 @@
             </div>
             <div class="col"></div>
         </div>
+        <p class="copyright">&copy; 2024 Canine Care. All Rights Reserved.</p>
     </footer>
 </body>
+
 </html>

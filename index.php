@@ -69,6 +69,12 @@
                             <h2 class="product-title"><?php echo $row['name']; ?></h2><br>
                             <span class="price">RS <?php echo $row['price']; ?></span>
                             <button class="add-cart">Add to cart</button>
+                            <a href="AddProductDetails.php?id=<?php echo $row['product_id']; ?>" class="view-details">
+                                <button class="view-details">View Details</button>
+                            </a>
+                            <!-- <a href="AddProductDetails.<php?id=' . $product_id . '">
+                                <button class="view-details">View Details</button>
+                            </a> -->
                         </div>
                 <?php
                     }
@@ -102,7 +108,7 @@
             <div class="adopt-section">
                 <a href="Adopt.html">
                     <h1>Dog Care</h1>
-                    <div class="Dog-img" style="margin-left: -35px;">
+                    <div class="Dog-img" style="margin-left: -50px;">
                         <img src="Resources/DogCheckup.png" alt="Dog Check Up Image">
                     </div>
                     <div class="Content">

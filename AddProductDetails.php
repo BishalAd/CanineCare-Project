@@ -37,34 +37,116 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($product['name']); ?> - Product Details</title>
-    <link rel="stylesheet" href="AddProduct.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="AddProduct.css">
 </head>
-<body>
-    <?php include 'nav.php'?>
 
-    <div class="container">
-        <h1 class="product-title"><?php echo htmlspecialchars($product['name']); ?></h1>
-        <div class="product-price">RS <?php echo htmlspecialchars($product['price']); ?></div>
-        <div class="product-images">
-            <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img1']); ?>" alt="Product Image 1">
-            <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img2']); ?>" alt="Product Image 2">
-            <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img3']); ?>" alt="Product Image 3">
+<body>
+    <?php include 'nav.php'; ?>
+
+    <main>
+        <div class="productInfo">
+            <div class="ProductImg">
+                <div class="carousel">
+                    <button class="prev" onclick="prevImage()">&#10094;</button>
+                    <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img1']); ?>" alt="Product Image 1" class="carousel-image active">
+                    <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img2']); ?>" alt="Product Image 2" class="carousel-image">
+                    <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img3']); ?>" alt="Product Image 3" class="carousel-image">
+                    <button class="next" onclick="nextImage()">&#10095;</button>
+                </div>
+            </div>
+            <div class="ProductInfo">
+                <div class="Title-Price">
+                    <h2><?php echo htmlspecialchars($product['category']); ?></h2>
+                    <h1><?php echo htmlspecialchars($product['name']); ?></h1>
+                    <h2> Rs. <?php echo htmlspecialchars($product['price']); ?></h2>
+                </div>
+                <div class="counter-box">
+                    <button class="count" onclick="increase()">+</button>
+                    <span id="number">1</span>
+                    <button class="count" onclick="decrease()">-</button>
+                </div>
+                <button class="AddToCart">Add To Cart</button>
+                <div class="product-Discription">
+                    <h2>Product Details</h2>
+                    <p><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
+                </div>
+            </div>
         </div>
-        <div class="product-description">
-            <h2>Description</h2>
-            <p><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
+
+        <div class="businessInfo">
+            <div class="PostInfo">
+                <h2>Business Information</h2>
+                <h3><i class="fas fa-building"></i> Business Name: ABC</h3>
+                <h3><i class="fas fa-phone-alt"></i> Phone no: ABC</h3>
+                <h3><i class="fas fa-envelope"></i> Email: ABC</h3>
+                <h3><i class="fas fa-map-marker-alt"></i> Address: ABC</h3>
+            </div>
         </div>
-        <!-- New fields added -->
-        <div class="product-details">
-            <h2>Product Details</h2>
-            <p><strong>Category:</strong> <?php echo htmlspecialchars($product['category']); ?></p>
-            <p><strong>Delivery Option:</strong> <?php echo htmlspecialchars($product['delivery_option']); ?></p>
-            <p><strong>Delivery Charge:</strong> <?php echo htmlspecialchars($product['delivery_charge']); ?></p>
-            <p><strong>Payment Option:</strong> <?php echo htmlspecialchars($product['payment_option']); ?></p>
+
+        <h2>Product Rating</h2>
+        <div class="rating">
+            <input type="radio" name="star" id="star1"><label for="star1">&#9733;</label>
+            <input type="radio" name="star" id="star2"><label for="star2">&#9733;</label>
+            <input type="radio" name="star" id="star3"><label for="star3">&#9733;</label>
+            <input type="radio" name="star" id="star4"><label for="star4">&#9733;</label>
+            <input type="radio" name="star" id="star5"><label for="star5">&#9733;</label>
         </div>
-        <div class="add-to-cart">Add to cart</div>
-    </div>
-    <script src="../script.js"></script>
+
+        <h2>Leave a Comment</h2>
+        <div class="comment-section">
+            <textarea placeholder="Write your comment here..."></textarea>
+            <button type="button">Submit Comment</button>
+        </div>
+
+        <h2>Comments</h2>
+        <div class="comments-display">
+            <div class="comment">
+                <p><strong>John Doe:</strong> Great product! Highly recommend.</p>
+                <span class="comment-time">2 hours ago</span>
+            </div>
+            <div class="comment">
+                <p><strong>Jane Smith:</strong> Not satisfied with the quality.</p>
+                <span class="comment-time">1 day ago</span>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let currentNumber = 1;
+
+        function increase() {
+            currentNumber++;
+            document.getElementById('number').textContent = currentNumber;
+        }
+
+        function decrease() {
+            if (currentNumber > 1) {
+                currentNumber--;
+                document.getElementById('number').textContent = currentNumber;
+            }
+        }
+
+        // Carousel functionality
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel-image');
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+    </script>
 </body>
 </html>

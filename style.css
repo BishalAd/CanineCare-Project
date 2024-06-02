@@ -172,7 +172,6 @@ nav {
   font-weight: 600;
 }
 
-
 /* --------------------------------------hero section or welcome--------------------------------- */
 
 .heroSection {
@@ -448,6 +447,11 @@ nav {
   transform: scale(1.2);
 }
 
+.view-details{
+  border: none;
+  background-color: transparent;
+}
+
 /* -------------------------------------------- Tranning Section --------------------------------- */
 .training-box {
   height: auto;
@@ -532,6 +536,8 @@ nav {
   transform: scale(1.1);
 }
 
+/* ---------------------------------------------Footer ------------------------------------ */
+
 footer {
   width: 100%;
   bottom: 0;
@@ -573,21 +579,37 @@ footer {
   position: relative;
 }
 
-.emlil {
+.email {
   width: fit-content;
   border-bottom: 1px solid #ccc;
   margin: 20px 0;
 }
 
-ul li a {
+.Footer-list li a {
   text-decoration: none;
   color: #fff;
   margin-top: 20px;
 }
 
-ul li {
+.Footer-list li {
   list-style: none;
 }
+
+.copyright{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(207, 204, 204);
+  color: black;
+  height: 45px;
+  margin-bottom: -30px;
+  font-weight: 600;
+}
+
+/*------------------------------------------------------------------------------------------*/
+/*------------------------------------  Media Query  ---------------------------------------*/
+/*------------------------------------------------------------------------------------------*/
+
 
 @media screen and (max-width: 900px) {
   .horizontal-nav {
@@ -653,12 +675,7 @@ ul li {
     width: 100%;
     margin-top: -50px;
   }
-  /* }
-    @media screen and (max-width: 500px){
-.logo img{
-    margin: 0;
-    width: 210px;
-} */
+  
 }
 @media screen and (max-width: 500px) {
   .logo img {

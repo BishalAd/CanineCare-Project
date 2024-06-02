@@ -79,6 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: transparent;
         }
 
         .Change_Password_container {
@@ -89,7 +90,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             border-radius: 5px;
             background-color: #f9f9f9;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 50px;
+            margin-top: 150px;
+            background-color: red;
+            border-radius: 20px;
         }
 
         .Change_Password_container h2 {

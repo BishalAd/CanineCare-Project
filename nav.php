@@ -2,7 +2,9 @@
 <body>
     <nav>
         <div class="logo">
+            <a href="index.php">
             <img src="Resources/Black logo - no background.svg" alt="CanineCare">
+            </a>
         </div>
         <div class="Main-Nav">
             <ul class="sidebar">
@@ -12,17 +14,17 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="Adopt/AdoptSection.php">Adopt</a></li>
                 <li><a href="Shop.php">Shop</a></li>
-                <li><a href="Training.html">Training</a></li>
+                <li><a href="testing/add_trainer.php">Training</a></li>
                 <li><a href="Care.html">Care</a></li>
-                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="Aboutus.php">About Us</a></li>
             </ul>
             <ul class="horizontal-nav">
                 <li><a href="index.php">Home</a></li>
                 <li><a href="Adopt/AdoptSection.php">Adopt</a></li>
                 <li><a href="Shop.php">Shop</a></li>
-                <li><a href="Training.html">Training</a></li>
+                <li><a href="testing/add_trainer.php">Training</a></li>
                 <li><a href="Care.html">Care</a></li>
-                <li><a href="AboutUs.html">About Us</a></li>
+                <li><a href="Aboutus.php">About Us</a></li>
             </ul>
         </div>
         <div class="login-Cart">

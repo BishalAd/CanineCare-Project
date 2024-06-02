@@ -159,7 +159,7 @@ $conn->close();
                     <option value="User">User</option>
                     <option value="Trainer">Trainer</option>
                     <option value="Doctor">Doctor</option>
-                    <option value="Business">Business</option>
+                    <option value="Business">Saller</option>
                     <option value="Other">Other</option>
                 </select>
                 <label for="email">Email</label>
