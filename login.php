@@ -26,7 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
-
         if ($result->num_rows > 0) {
             $user = $result->fetch_assoc();
             if (password_verify($password, $user['password'])) {
@@ -148,7 +147,7 @@ $conn->close();
 <body>
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <button class="close-btn">X</button>
+            <!-- <button class="close-btn">X</button> -->
             <form action="" method="POST" enctype="multipart/form-data">
                 <h1>Create Account</h1>
                 <label for="FullName">Full Name</label>
@@ -172,7 +171,7 @@ $conn->close();
             </form>
         </div>
         <div class="form-container sign-in">
-            <button class="close-btn">X</button>
+            <!-- <button class="close-btn">X</button> -->
             <form action="" method="POST">
                 <h1>Sign In</h1>
                 <label for="email">Email</label>

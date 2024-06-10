@@ -102,8 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="delivery_option">Delivery Option</label>
             <select id="delivery_option" name="delivery_option" required>
                 <option value="" disabled selected>Select delivery option</option>
-                <option value="Standard">Standard</option>
-                <option value="Express">Express</option>
+                <option value="With In My City">With In My City</option>
+                <option value="Out Of My City">Out Of My City</option>
             </select>
         </div>
         <div class="form-group">
@@ -114,8 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="payment_option">Payment Option</label>
             <select id="payment_option" name="payment_option" required>
                 <option value="" disabled selected>Select payment option</option>
-                <option value="Credit Card">Credit Card</option>
-                <option value="PayPal">PayPal</option>
+                <option value="Online">Credit Card</option>
                 <option value="Cash on Delivery">Cash on Delivery</option>
             </select>
         </div>
@@ -138,6 +137,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="submit-btn">Submit</button>
     </form>
 </div>
-
 </body>
 </html>

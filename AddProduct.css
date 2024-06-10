@@ -5,6 +5,8 @@
     justify-content: center;
 } */
 
+
+
 /* ---------------------- Add Product Form css ---------------------------------- */
 .form-container {
     background-color: #fff;
@@ -13,6 +15,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 60%;
     width: 100%;
+    margin-left: 18.5%;
 }
 .form-container h2 {
     margin-bottom: 20px;

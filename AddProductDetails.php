@@ -67,7 +67,11 @@ $conn->close();
                     <span id="number">1</span>
                     <button class="count" onclick="decrease()">-</button>
                 </div>
-                <button class="AddToCart">Add To Cart</button>
+                <form action="add_to_cart.php" method="post" class="add-to-cart-form">
+                    <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                    <input type="hidden" name="quantity" id="quantity" value="1">
+                    <button type="submit" class="AddToCart">Add To Cart</button>
+                </form>
                 <div class="product-Discription">
                     <h2>Product Details</h2>
                     <p><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
@@ -119,12 +123,14 @@ $conn->close();
         function increase() {
             currentNumber++;
             document.getElementById('number').textContent = currentNumber;
+            document.getElementById('quantity').value = currentNumber;
         }
 
         function decrease() {
             if (currentNumber > 1) {
                 currentNumber--;
                 document.getElementById('number').textContent = currentNumber;
+                document.getElementById('quantity').value = currentNumber;
             }
         }
 

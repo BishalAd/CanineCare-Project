@@ -1,0 +1,287 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  /* margin: 0; */
+  /* padding: 0; */
+  background: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+  color: #333;
+}
+
+/* .TrainerContainer{
+} */
+
+.Training-Heading {
+  /* background: linear-gradient(to right, #ff512f, #dd2476); */
+  /* color: #fff; */
+  color: #3d3939;
+  padding: 2rem 0;
+  text-align: center;
+}
+
+/* header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  letter-spacing: 1px;
+} */
+
+.container {
+  width: 90%;
+  margin: 2rem auto;
+  overflow: hidden;
+}
+
+.video-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.video-grid iframe {
+  flex: 1 1 300px;
+  max-width: 560px;
+  height: 315px;
+  border: 5px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-grid iframe:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+  .video-grid iframe {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  width: 400px;
+  height: 50%;
+}
+
+.card:hover {
+  transform: translateY(-15px);
+}
+
+.card .content {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.card .content .img {
+  height: 130px;
+  width: 130px;
+  border-radius: 50%;
+  padding: 3px;
+  background: #ffcd2a65;
+  margin: 0 auto 14px;
+}
+
+.card .content .img img {
+  height: 100%;
+  width: 100%;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card .content .name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.card .content .job {
+  font-size: 20px;
+  color: #ff676d;
+}
+
+.card .content .media-icons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.media-icons a {
+  text-align: center;
+  line-height: 33px;
+  height: 35px;
+  width: 35px;
+  margin: 0 4px;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: #ff676d;
+  transition: all 0.3s ease;
+}
+
+.media-icons a:hover {
+  color: #ff676d;
+  background-color: #fff;
+  border-color: #ff676d;
+}
+
+.form-container {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.form-container h2 {
+  margin-top: 0;
+  text-align: center;
+  color: #ff676d;
+  font-size: 24px;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-container form input,
+.form-container form button {
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.form-container form input:focus,
+.form-container form button:focus {
+  outline: none;
+  border-color: #ff676d;
+  box-shadow: 0 0 5px rgba(255, 103, 109, 0.5);
+}
+
+.form-container form button {
+  background: linear-gradient(to right, #ff512f, #dd2476);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 18px;
+}
+
+.form-container form button:hover {
+  background: linear-gradient(to right, #dd2476, #ff512f);
+}
+
+.form-container .close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: #333;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.form-container .close-btn:hover {
+  opacity: 1;
+}
+
+.form-popup {
+  display: none;
+  margin-top: 50px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 600px;
+  border-radius: 15px;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.form-container input[type="text"],
+.form-container input[type="url"],
+.form-container input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0 10px 0;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="url"]:focus,
+.form-container input[type="file"]:focus {
+  border-color: #ff676d;
+}
+
+.form-container button[type="submit"] {
+  background-color: #ff676d;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button[type="submit"]:hover {
+  background-color: #ff4757;
+}
+
+.AddTrainerCard {
+  text-align: right;
+  margin: 40px 3%;
+}
+
+.AddTrainerCard button {
+  background-color: orangered;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+}
+
+
+.AddTrainerCard button:hover{
+    background-color: rgb(255, 101, 45);
+}

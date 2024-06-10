@@ -186,13 +186,14 @@ nav {
   object-fit: cover;
   z-index: -1;
   margin-top: 60px;
+  margin-bottom: 35px;
 }
 .black-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 94%;
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -399,7 +400,8 @@ nav {
 }
 
 .price:hover {
-  color: #06780f;
+  color: #0d4712;
+  transform: scale(0.5);
 }
 
 .add-cart {
@@ -447,9 +449,29 @@ nav {
   transform: scale(1.2);
 }
 
-.view-details{
+.view-details {
   border: none;
   background-color: transparent;
+}
+
+.AddProductBtn {
+  text-align: right;
+  margin: 100px 0px 50px 85%;
+}
+
+.AddProductBtn button {
+  background-color: orangered;
+  color: white;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+}
+
+.AddProductBtn button:hover {
+  background-color: rgb(255, 101, 45);
 }
 
 /* -------------------------------------------- Tranning Section --------------------------------- */
@@ -595,7 +617,8 @@ footer {
   list-style: none;
 }
 
-.copyright{
+
+.copyright {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -609,7 +632,6 @@ footer {
 /*------------------------------------------------------------------------------------------*/
 /*------------------------------------  Media Query  ---------------------------------------*/
 /*------------------------------------------------------------------------------------------*/
-
 
 @media screen and (max-width: 900px) {
   .horizontal-nav {
@@ -675,7 +697,6 @@ footer {
     width: 100%;
     margin-top: -50px;
   }
-  
 }
 @media screen and (max-width: 500px) {
   .logo img {
