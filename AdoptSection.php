@@ -113,7 +113,7 @@
 
                     if ($stmt->execute()) {
                         echo "New dog record created successfully";
-                        header("Location: index.php"); // Redirect to main page to avoid resubmission
+                        header("Location: AdoptSection.php"); 
                         exit();
                     } else {
                         echo "Error: " . htmlspecialchars($stmt->error);

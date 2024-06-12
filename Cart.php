@@ -7,32 +7,48 @@ if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit; // Ensure script execution stops after redirection
 }
-
-if (isset($_POST['update_cart'])) {
-    foreach ($_POST['quantity'] as $index => $quantity) {
-        $_SESSION['cart'][$index]['quantity'] = $quantity;
-    }
-}
-
-if (isset($_POST['remove_item'])) {
-    $remove_index = $_POST['remove_item'];
-    array_splice($_SESSION['cart'], $remove_index, 1);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 <style>
     /* style.css */
 
-/* Add your existing styles here */
+/* Base styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+}
 
 .cart-section {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .cart-section h1 {
-    margin: 25px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -40,11 +56,12 @@ if (isset($_POST['remove_item'])) {
 .cart-section table {
     width: 100%;
     border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 .cart-section th, .cart-section td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 12px;
     text-align: center;
 }
 
@@ -53,12 +70,9 @@ if (isset($_POST['remove_item'])) {
 }
 
 .cart-section .cart-img {
-    width: 50px;
-    height: 50px;
-}
-
-.cart-section .cart-link {
-    position: relative;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
 }
 
 .cart-section .cart-count {
@@ -72,22 +86,39 @@ if (isset($_POST['remove_item'])) {
     font-size: 12px;
 }
 
+.cart-section .cart-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-section .cart-buttons button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-section .cart-buttons button:hover {
+    background-color: #555;
+}
+
+.cart-section .total-price {
+    text-align: right;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
 </style>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shopping Cart</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-
 <body>
 <?php include 'nav.php' ?>
 <main class="cart-section">
     <h1>Shopping Cart</h1>
     <?php
     if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
-        echo '<form action="cart.php" method="post">';
+        echo '<form action="cart_actions.php" method="post">';
         echo '<table>';
         echo '<tr><th>Image</th><th>Name</th><th>Price</th><th>Quantity</th><th>Total</th><th>Action</th></tr>';
 
@@ -105,8 +136,11 @@ if (isset($_POST['remove_item'])) {
         }
 
         echo '</table>';
-        echo '<h2>Total: RS ' . $total_price . '</h2>';
+        echo '<div class="total-price">Total: RS ' . $total_price . '</div>';
+        echo '<div class="cart-buttons">';
         echo '<button type="submit" name="update_cart">Update Cart</button>';
+        echo '<a href="checkout.php" class="order-now-button">Order Now</a>';
+        echo '</div>';
         echo '</form>';
     } else {
         echo '<p>Your cart is empty.</p>';
@@ -114,5 +148,4 @@ if (isset($_POST['remove_item'])) {
     ?>
 </main>
 </body>
-
 </html>

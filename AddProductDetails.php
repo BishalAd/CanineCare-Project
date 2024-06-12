@@ -67,10 +67,10 @@ $conn->close();
                     <span id="number">1</span>
                     <button class="count" onclick="decrease()">-</button>
                 </div>
-                <form action="add_to_cart.php" method="post" class="add-to-cart-form">
+                <form action="cart_actions.php" method="post" class="add-to-cart-form">
                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                     <input type="hidden" name="quantity" id="quantity" value="1">
-                    <button type="submit" class="AddToCart">Add To Cart</button>
+                    <button type="submit" name="add_to_cart" class="AddToCart">Add To Cart</button>
                 </form>
                 <div class="product-Discription">
                     <h2>Product Details</h2>

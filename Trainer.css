@@ -285,3 +285,35 @@ body {
 .AddTrainerCard button:hover{
     background-color: rgb(255, 101, 45);
 }
+
+
+.TrainingVideosSection {
+  /* display: flex; */
+  margin-top: 50px;
+}
+
+.TrainingVideosSection h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.TrainingVideosContainer {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-between;
+  gap: 2%;
+}
+
+.TrainingVideo {
+  width: calc(50% - 10px);
+  margin-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .TrainingVideo {
+      width: 100%;
+  }
+}

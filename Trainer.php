@@ -13,16 +13,22 @@
     <?php include 'nav.php'; ?>
     <div class="TrainerContainer">
         <div class="Training-Heading">
-            <h1>.</h1>
+            <h1>Trainer</h1>
         </div>
         <div class="AddTrainerCard">
             <button onclick="showForm()">Add Trainer</button>
         </div>
-        <div class="container">
-        <div class="TrainerContainer">
-        <div class="Training-Heading">
-            <h1>Trainer</h1>
+        <div class="filter-section">
+            <select id="filterState" onchange="filterTrainers()">
+                <option value="">Select State</option>
+                <option value="State1">State1</option>
+                <option value="State2">State2</option>
+            </select>
+            <select id="filterDistrict" onchange="filterTrainers()">
+                <option value="">Select District</option>
+            </select>
         </div>
+        <div class="container">
             <div class="cards" id="trainerCards">
                 <?php
                 $servername = "localhost";
@@ -42,7 +48,7 @@
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<div class='card'>
+                        echo "<div class='card' data-state='" . $row["state"] . "' data-district='" . $row["district"] . "'>
                             <div class='content' style='position: relative'>
                                 <div class='img'>
                                     <img src='" . $row["image"] . "' alt='" . $row["name"] . "'>
@@ -71,6 +77,14 @@
                     <h2>Add New Trainer</h2>
                     <input type="text" name="trainerName" placeholder="Trainer Name" required>
                     <input type="text" name="trainerJob" placeholder="Job Title" required>
+                    <select name="state" id="state" required>
+                        <option value="">Select State</option>
+                        <option value="State1">State1</option>
+                        <option value="State2">State2</option>
+                    </select>
+                    <select name="district" id="district" required>
+                        <option value="">Select District</option>
+                    </select>
                     <input type="file" name="profile" id="profile" required><br>
                     <input type="url" name="trainerFacebook" placeholder="Facebook URL">
                     <input type="url" name="trainerTwitter" placeholder="Twitter URL">
@@ -79,9 +93,20 @@
                     <button type="submit">Add Trainer</button>
                 </form>
             </div>
+        </div>
 
+        <!-- Training Videos Section -->
+        <div class="TrainingVideosSection">
+            <h2>Training Videos</h2>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/Zt31jNGAKz4?si=kmm7--uGorMJ-cuz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/psemvgmsI3Y?si=lxJjCraCw0GZAnNt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/MW8X0IMVjzQ?si=s2vk6kNjY6B0j8As" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/1oDGa2yPb2g?si=JGvRkLkHFl54MlEV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/cn50qtdFzbI?si=6Ryqx3zeSsMqGOio" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/xT5zE5oiqoY?si=17K8uORhCfn2J8Z5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
     </div>
+
     <script>
         function showForm() {
             document.getElementById("trainerFormPopup").style.display = "block";
@@ -91,7 +116,54 @@
             document.getElementById("trainerFormPopup").style.display = "none";
         }
 
-        document.getElementById("trainerForm").addEventListener("submit", function(event) {
+        document.getElementById("state").addEventListener("change", function () {
+            const state = this.value;
+            const districtSelect = document.getElementById("district");
+            districtSelect.innerHTML = "<option value=''>Select District</option>"; // Clear existing options
+
+            if (state === "State1") {
+                districtSelect.innerHTML += "<option value='District1'>District1</option>";
+                districtSelect.innerHTML += "<option value='District2'>District2</option>";
+            } else if (state === "State2") {
+                districtSelect.innerHTML += "<option value='District3'>District3</option>";
+                districtSelect.innerHTML += "<option value='District4'>District4'></option>";
+            }
+        });
+
+        document.getElementById("filterState").addEventListener("change", function () {
+            const state = this.value;
+            const districtSelect = document.getElementById("filterDistrict");
+            districtSelect.innerHTML = "<option value=''>Select District</option>"; // Clear existing options
+
+            if (state === "State1") {
+                districtSelect.innerHTML += "<option value='District1'>District1</option>";
+                districtSelect.innerHTML += "<option value='District2'>District2</option>";
+            } else if (state === "State2") {
+                districtSelect.innerHTML += "<option value='District3'>District3</option>";
+                districtSelect.innerHTML += "<option value='District4'>District4</option>";
+            }
+
+            filterTrainers();
+        });
+
+        function filterTrainers() {
+            const state = document.getElementById("filterState").value;
+            const district = document.getElementById("filterDistrict").value;
+            const cards = document.querySelectorAll(".card");
+
+            cards.forEach(card => {
+                const cardState = card.getAttribute("data-state");
+                const cardDistrict = card.getAttribute("data-district");
+
+                if ((state === "" || cardState === state) && (district === "" || cardDistrict === district)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+        document.getElementById("trainerForm").addEventListener("submit", function (event) {
             if (event.submitter.className !== 'close-btn') {
                 event.preventDefault();
                 hideForm();
@@ -117,6 +189,8 @@
 
         $name = $_POST['trainerName'];
         $job = $_POST['trainerJob'];
+        $state = $_POST['state'];
+        $district = $_POST['district'];
         $facebook = $_POST['trainerFacebook'];
         $twitter = $_POST['trainerTwitter'];
         $instagram = $_POST['trainerInstagram'];
@@ -136,8 +210,8 @@
             $image = "";
         }
 
-        $sql = "INSERT INTO trainers (name, job, image, facebook, twitter, instagram, youtube) 
-                VALUES ('$name', '$job', '$image', '$facebook', '$twitter', '$instagram', '$youtube')";
+        $sql = "INSERT INTO trainers (name, job, state, district, image, facebook, twitter, instagram, youtube) 
+                VALUES ('$name', '$job', '$state', '$district', '$image', '$facebook', '$twitter', '$instagram', '$youtube')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>alert('New trainer added successfully'); window.location.href = window.location.href;</script>";
@@ -148,6 +222,7 @@
         $conn->close();
     }
     ?>
+    <?php include  'Footer.php' ?>
 </body>
 
 </html>
