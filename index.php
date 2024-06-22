@@ -30,7 +30,7 @@
         </div>
         <div class="other-section">
             <div class="adopt-section">
-                <a href="Adopt.php">
+                <a href="AdoptSection.php">
                     <h1>Adopt Dog</h1>
                     <div class="Dog-img">
                         <img src="Resources/2sad dog.png" alt="Sad Dog Image" class="original-image">
@@ -43,7 +43,8 @@
                 </a>
             </div>
         </div>
-        <?php        $servername = "localhost";
+        <?php        
+        $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "caninecare_db";
@@ -83,7 +84,9 @@
                 }
                 ?>
             </div>
-            <a href="Shop.php">See More</a>
+            <div class="SeeMore">
+                <a href="Shop.php">See More</a>
+            </div>
         </div>
 
         <?php
@@ -92,7 +95,7 @@
 
         <div class="training-box">
             <div class="training-section">
-                <a href="Training.html">
+                <a href="Trainer.php">
                     <h1>Training Programs</h1>
                     <div class="Training-section-Content">
                         <p><q>Explore our training programs designed to enhance your pet's skills and strengthen your

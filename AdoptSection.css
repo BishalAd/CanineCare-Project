@@ -1,3 +1,133 @@
+/* General styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Hero section styles */
+.heroSection {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+}
+
+#video-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+
+.black-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+  /* padding: 20px; */
+}
+
+.content h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+/* Filter section styles */
+.filter-section {
+  width: 20%;
+  float: left;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.filter-section h2 {
+  color: #ff676d;
+}
+
+.filter-section h3{
+  color: #ff676d;
+  margin-top: 20px;
+}
+
+.filter-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filter-section form label {
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.filter-section form .checkbox-group {
+  flex-direction: column;
+}
+
+.filter-section form input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.filter-section form button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #ff676d;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.filter-section form button:hover {
+  background-color: #ff4757;
+}
+.filter-Input-box{
+  height: 40px;
+  border-radius: 5px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1em;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Filter top styles */
+.filter-top {
+  width: calc(100% - 80px);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 20px auto;
+}
+
+/* Add Dogs button styles */
 .Add-Dogs {
   text-align: right;
   margin: 40px 3%;
@@ -18,36 +148,53 @@
   background-color: rgb(255, 101, 45);
 }
 
+/* Adopt section title styles */
 .AdoptTitle {
-  /* margin-top: 90px; */
   text-align: center;
   color: #333;
+  font-size: 2.5em;
+  margin: 20px 0;
 }
 
+/* Cards container styles */
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 20px;
+  justify-items: center;
 }
 
 .card {
-  background: #fff;
+  display: flex;
+  flex-direction: column;
   border-radius: 10px;
+  text-align: center;
+  border: 2px solid #ccc;
+  padding: 20px;
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s;
-  width: calc(33.333% - 40px);
-  margin: 20px;
+  transition: box-shadow 0.3s;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
+  background-color: rgb(235, 235, 235);
 }
 
 .card:hover {
   transform: translateY(-10px);
 }
 
+.card-image {
+  flex: 1; 
+  overflow: hidden;
+}
+
 .card-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .card-content {
@@ -75,105 +222,114 @@
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 16px;
+  align-self: center;
 }
 
 .adopt-btn:hover {
   background-color: #ff3b2f;
 }
+
+/* body.no-scroll {
+  overflow: hidden;
+} */
+
+/* Form container styles */
 .form-container {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 1.5rem;
-    margin-top: 2rem;
-    position: relative;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin-top: 2rem;
+  position: relative; /* Changed from sticky to relative */
+  height: auto;
 }
 
 .form-container h2 {
-    margin-top: 0;
-    text-align: center;
-    color: #ff676d;
-    font-size: 24px;
+  margin-top: 0;
+  text-align: center;
+  color: #ff676d;
+  font-size: 24px;
 }
 
 .form-container form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .form-container form input,
 .form-container form textarea,
 .form-container form button {
-    padding: 0.75rem;
-    margin: 0.5rem 0;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    font-size: 16px;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
 }
 
 .form-container form input:focus,
 .form-container form textarea:focus,
 .form-container form button:focus {
-    outline: none;
-    border-color: #ff676d;
-    box-shadow: 0 0 5px rgba(255, 103, 109, 0.5);
+  outline: none;
+  border-color: #ff676d;
+  box-shadow: 0 0 5px rgba(255, 103, 109, 0.5);
 }
 
 .form-container form button {
-    background: linear-gradient(to right, #ff512f, #dd2476);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    font-size: 18px;
+  background: linear-gradient(to right, #ff512f, #dd2476);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-size: 18px;
 }
 
 .form-container form button:hover {
-    background: linear-gradient(to right, #dd2476, #ff512f);
+  background: linear-gradient(to right, #dd2476, #ff512f);
 }
 
 .form-container .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    color: #333;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    opacity: 0.8;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  color: #333;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .form-container .close-btn:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .form-popup {
-    display: none;
-    position: absolute;
-    margin-top: -50px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 3px solid #f1f1f1;
-    z-index: 9;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 600px;
-    border-radius: 15px;
-    animation: fadeIn 0.5s ease;
+  display: none;
+  position: fixed; /* Ensure the form is fixed */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 600px;
+  border-radius: 15px;
+  animation: fadeIn 0.5s ease;
+  max-height: 80vh; 
+  overflow-y: auto;
+  margin-top: 60px;
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .form-container input[type="text"],
@@ -181,14 +337,14 @@
 .form-container input[type="file"],
 .form-container input[type="number"],
 .form-container textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 5px 0 10px 0;
-    border: 1px solid #ddd;
-    background: #f9f9f9;
-    border-radius: 10px;
-    box-sizing: border-box;
-    font-size: 16px;
+  width: 100%;
+  padding: 12px;
+  margin: 5px 0 10px 0;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-sizing: border-box;
+  font-size: 16px;
 }
 
 .form-container input[type="text"]:focus,
@@ -196,21 +352,97 @@
 .form-container input[type="file"]:focus,
 .form-container input[type="number"]:focus,
 .form-container textarea:focus {
-    border-color: #ff676d;
+  border-color: #ff676d;
 }
 
 .form-container button[type="submit"] {
-    background-color: #ff676d;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    margin-bottom: 10px;
-    border-radius: 10px;
-    transition: background-color 0.3s ease;
+  background-color: #ff676d;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease;
 }
 
 .form-container button[type="submit"]:hover {
-    background-color: #ff4757;
+  background-color: #ff4757;
 }
+
+.no-dogs-message{
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 300px;
+}
+
+
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .filter-section {
+        width: 100%;
+        margin-bottom: 20px;
+        height: auto;
+        position: relative;
+        top: 0;
+    }
+
+    .filter-top {
+        flex-direction: column;
+    }
+
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 0;
+    }
+
+    .card {
+        width: 80%;
+    }
+
+    /* Additional responsive adjustments */
+    .Add-Dogs {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .Add-Dogs button {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+
+    /* Form container responsive styles */
+    .form-container {
+        width: 90%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-container form input,
+    .form-container form textarea,
+    .form-container form button {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .form-container .close-btn {
+        font-size: 1.2rem;
+        top: 5px;
+        right: 5px;
+    }
+}
+
+/* Hover effect for cards */
+.card:hover {
+    transform: translateY(-10px);
+}
+

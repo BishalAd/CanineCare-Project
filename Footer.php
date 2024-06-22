@@ -10,7 +10,7 @@
   <footer>
     <div class="footer-container">
       <div class="footer-row">
-        <div class="footer-col">
+        <div class="footer-col-discription">
           <a href="index.php">
             <img src="Resources/White logo.svg" alt="logo" class="footer-logo">
           </a>
@@ -43,17 +43,9 @@
               <span class="tooltip">Facebook</span>
               <span><i class="fab fa-facebook-f"></i></span>
             </li>
-            <li class="icon twitter">
-              <span class="tooltip">Twitter</span>
-              <span><i class="fab fa-twitter"></i></span>
-            </li>
             <li class="icon instagram">
               <span class="tooltip">Instagram</span>
               <span><i class="fab fa-instagram"></i></span>
-            </li>
-            <li class="icon github">
-              <span class="tooltip">Github</span>
-              <span><i class="fab fa-github"></i></span>
             </li>
             <li class="icon youtube">
               <span class="tooltip">Youtube</span>
@@ -61,11 +53,16 @@
             </li>
           </ul>
         </div>
+        <div class="donate-img footer-col">
+          <a href="https://www.hartnepal.org/" target="_blank">
+          <img src="Resources/Donate.png" alt="Donate on this number : 984-6531069">
+          </a>
+        </div>
+      </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; 2024 Canine Care. All Rights Reserved.</p>
       </div>
-    </div>
   </footer>
 </body>
 

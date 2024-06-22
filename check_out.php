@@ -28,6 +28,7 @@ if (isset($_POST['place_order'])) {
 </head>
 <body>
 <?php include 'nav.php' ?>
+
 <main class="checkout-section">
     <h1>Checkout</h1>
     <form action="checkout.php" method="post">

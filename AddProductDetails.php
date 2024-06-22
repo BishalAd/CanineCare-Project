@@ -18,12 +18,19 @@ if ($product_id <= 0) {
     die("Invalid product ID.");
 }
 
-// SQL query to retrieve product data
-$sql = "SELECT * FROM product WHERE product_id = $product_id";
+// SQL query to retrieve product data along with user data
+$sql = "
+    SELECT p.*, u.FullName as user_fullname, u.email as user_email, u.profileImage as user_profile
+    FROM product p
+    JOIN users u ON p.product_id = u.id
+    WHERE p.product_id = $product_id
+";
+
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $product = $result->fetch_assoc();
+    $user_profile = json_decode($product['user_profile'], true); // Assuming profile is stored as JSON
 } else {
     die("Product not found.");
 }
@@ -53,7 +60,7 @@ $conn->close();
                     <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img1']); ?>" alt="Product Image 1" class="carousel-image active">
                     <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img2']); ?>" alt="Product Image 2" class="carousel-image">
                     <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img3']); ?>" alt="Product Image 3" class="carousel-image">
-                    <button class="next" onclick="nextImage()">&#10095;</button>
+                    <button class="next" onclick="nextImage()">&#10095;></button>
                 </div>
             </div>
             <div class="ProductInfo">
@@ -67,7 +74,7 @@ $conn->close();
                     <span id="number">1</span>
                     <button class="count" onclick="decrease()">-</button>
                 </div>
-                <form action="cart_actions.php" method="post" class="add-to-cart-form">
+                <form action="cart_actions.php" method="post" class="add-to-cart-form" onsubmit="updateQuantity()">
                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
                     <input type="hidden" name="quantity" id="quantity" value="1">
                     <button type="submit" name="add_to_cart" class="AddToCart">Add To Cart</button>
@@ -82,10 +89,8 @@ $conn->close();
         <div class="businessInfo">
             <div class="PostInfo">
                 <h2>Business Information</h2>
-                <h3><i class="fas fa-building"></i> Business Name: ABC</h3>
-                <h3><i class="fas fa-phone-alt"></i> Phone no: ABC</h3>
-                <h3><i class="fas fa-envelope"></i> Email: ABC</h3>
-                <h3><i class="fas fa-map-marker-alt"></i> Address: ABC</h3>
+                <h3><i class="fas fa-user"></i> Name: <?php echo htmlspecialchars($product['user_fullname']); ?></h3>
+                <h3><i class="fas fa-envelope"></i> Email: <?php echo htmlspecialchars($product['user_email']); ?></h3>
             </div>
         </div>
 
@@ -123,15 +128,17 @@ $conn->close();
         function increase() {
             currentNumber++;
             document.getElementById('number').textContent = currentNumber;
-            document.getElementById('quantity').value = currentNumber;
         }
 
         function decrease() {
             if (currentNumber > 1) {
                 currentNumber--;
                 document.getElementById('number').textContent = currentNumber;
-                document.getElementById('quantity').value = currentNumber;
             }
+        }
+
+        function updateQuantity() {
+            document.getElementById('quantity').value = currentNumber;
         }
 
         // Carousel functionality

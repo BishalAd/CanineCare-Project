@@ -139,7 +139,7 @@ nav a {
         echo '<div class="total-price">Total: RS ' . $total_price . '</div>';
         echo '<div class="cart-buttons">';
         echo '<button type="submit" name="update_cart">Update Cart</button>';
-        echo '<a href="checkout.php" class="order-now-button">Order Now</a>';
+        echo '<a href="check_out.php" class="order-now-button">Order Now</a>';
         echo '</div>';
         echo '</form>';
     } else {
