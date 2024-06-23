@@ -282,7 +282,7 @@
                 echo '<p class="no-dogs-message">No dogs found.</p>';
             }
 
-            $stmt->close();
+            // $stmt->close();
             $conn->close();
             ?>
         </div>

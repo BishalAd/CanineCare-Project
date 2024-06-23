@@ -94,6 +94,8 @@ if (isset($_POST['add_to_cart'])) {
     echo '<option value="all"'.($filter == 'all' ? ' selected' : '').'>All</option>';
     echo '<option value="food"'.($filter == 'food' ? ' selected' : '').'>Food</option>';
     echo '<option value="accessories"'.($filter == 'accessories' ? ' selected' : '').'>Accessories</option>';
+    echo '<option value="health"'.($filter == 'health' ? ' selected' : '').'>Health</option>';
+    echo '<option value="toy"'.($filter == 'toy' ? ' selected' : '').'>Toy</option>';
     echo '</select>';
     echo '</form>';
 
@@ -103,6 +105,10 @@ if (isset($_POST['add_to_cart'])) {
         $sql .= " WHERE category = 'food'";
     } elseif ($filter == 'accessories') {
         $sql .= " WHERE category = 'accessories'";
+    } elseif ($filter == 'health') {
+        $sql .= " WHERE category = 'health'";
+    } elseif ($filter == 'toy') {
+        $sql .= " WHERE category = 'toy'";
     }
     $result = $conn->query($sql);
 
@@ -129,7 +135,6 @@ if (isset($_POST['add_to_cart'])) {
             echo '    </form>';
             echo '    <a href="AddProductDetails.php?id=' . $product_id . '">';
             echo '        <button class="view-details">View Details</button>';
-            echo '    </a>';
             echo '</div>';
         }
     } else {
