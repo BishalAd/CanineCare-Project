@@ -18,6 +18,8 @@
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
     }
+    
+    $user_id = $_SESSION['id'];
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Enable error reporting
@@ -60,9 +62,6 @@
             // File is uploaded successfully
             $imagePath = $target_file;
 
-            // Get user ID from session (assume user is logged in)
-            $user_id = $_SESSION['user_id'];
-
             // Prepare and bind
             $stmt = $conn->prepare("INSERT INTO dogs (name, age, breed, image, description, price, vaccination_status, state, district, location, user_id, gender, AgeType) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             if ($stmt === false) {
@@ -86,8 +85,6 @@
     }
     ?>
 
-
-
     <main class="AdoptSection">
         <div class="heroSection">
             <video autoplay muted loop id="video-background">
@@ -102,7 +99,9 @@
             </div>
         </div>
         <div class="Add-Dogs">
-            <button onclick="showForm()">Add Dogs</button>
+            <?php if (isset($_SESSION['id'])) { ?>
+                <button onclick="showForm()">Add Dogs</button>
+           <?php } ?>
         </div>
         <h1 class="AdoptTitle">Adopt a Dog</h1>
         <div class="filter-section">

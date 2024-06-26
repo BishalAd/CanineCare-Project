@@ -1,44 +1,261 @@
-.dog-details-section {
+/* body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f9fc;
+    color: #333;
+} */
+
+.DogDetailsContainer {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.product {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /* gap: 40px; */
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.product-main-image {
+    /* flex: 2; */
+    display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 40%;
+}
+
+.product-main-image img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+
+.product-details {
+    /* flex: 3; */
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    align-items: left;
+    width: 50%;
+}
+
+.product-title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    color: #28a745;
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.product-description {
+    margin-top: 20px;
+    font-size: 20px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.product-description h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.AdoptNow {
+    display: inline-block;
+    background-color: rgb(247, 130, 87);
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.AdoptNow:hover {
+    background-color: orangered;
 }
 
 .dog-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.owner-info {
+    text-align: left;
+    margin-top: 30px;
     padding: 20px;
-    border-radius: 8px;
-    max-width: 600px;
-    width: 100%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
-.dog-image img {
-    width: 100%;
-    border-radius: 8px;
+.owner-info h2 {
+    margin-bottom: 20px;
+    color: #007bff;
 }
 
-.dog-info, .owner-info {
-    margin-top: 20px;
-    width: 100%;
+.owner-details {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.dog-info h1, .owner-info h2 {
-    margin-bottom: 10px;
-}
-
-.dog-info p, .owner-info p {
-    margin: 5px 0;
-}
-
-.owner-image {
+.owner-details img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    object-fit: cover;
+    border: 3px solid #ddd;
+}
+
+.owner-details p {
+    margin: 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.you-may-also-like {
+    margin-top: 50px;
+}
+
+.you-may-also-like h2 {
+    margin-bottom: 30px;
+    color: #007bff;
+}
+
+.similar-dogs {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.similar-dog-card {
+    flex: 1 1 calc(33% - 20px);
+    max-width: calc(33% - 20px);
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.similar-dog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.similar-dog-card img {
+    width: 100%;
+    border-radius: 10px;
     margin-bottom: 10px;
+}
+
+.similar-dog-card p {
+    margin: 0;
+    font-weight: bold;
+    color: #333;
+}
+/* Add this to your CSS file */
+.popup-form {
+    display: none; 
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+
+.popup-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content button{
+    display: inline-block;
+    background-color: orange;
+    color: #fff;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+
+}
+
+.popup-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.popup-close:hover,
+.popup-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+@media screen and (max-width: 768px) {
+    .product {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-main-image, .product-details {
+        flex: 1;
+        width: 100%;
+    }
+
+    .similar-dogs {
+        flex-direction: column;
+    }
+
+    .similar-dog-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
 }

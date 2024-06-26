@@ -1,0 +1,255 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #2ca046;
+    padding: 20px;
+    color: white;
+    margin: 2.5%;
+    border-radius: 20px;
+}
+
+.header-section {
+    max-width: 60%;
+}
+
+.header-section h1 {
+    font-size: 2em;
+}
+
+.header-section p {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.consult-button {
+    background-color: #ff9f1a;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1em;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.consult-button:hover {
+    background-color: #e68a00;
+}
+
+.vet-image-section img {
+    max-width: 100%;
+    height: auto;
+}
+
+.features-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.feature-item {
+    text-align: center;
+    max-width: 20%;
+}
+
+.feature-item img {
+    max-width: 50px;
+    height: auto;
+}
+
+.feature-item p {
+    font-weight: bold;
+}
+
+.feature-item span {
+    display: block;
+    margin-top: 5px;
+}
+
+.popup-form {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.popup-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.popup-content h1 {
+    margin-top: 0;
+}
+
+.popup-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.popup-close:hover,
+.popup-close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.consult-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.consult-form-container h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+}
+
+.consult-price {
+    font-size: 1.5em;
+    color: #28a745;
+    margin-bottom: 10px;
+}
+
+.consult-description {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.consult-form-container form {
+    text-align: left;
+}
+
+.consult-form-container form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.consult-form-container form input,
+.consult-form-container form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.consult-form-container form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.consult-form-container form button:hover {
+    background-color: #0056b3;
+}
+
+.consult-success {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.consult-error {
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.doctor-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px; 
+}
+
+.doctor-section {
+    text-align: center;
+    width: 100%;
+    padding: 20px;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+
+}
+
+.doctor-container h1 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.doctor-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+    grid-gap: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.doctor-card:hover {
+    transform: scale(1.05);
+}
+
+.doctor-card img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.doctor-card h2 {
+    color: #27ae60;
+    margin-bottom: 10px;
+}
+
+.doctor-card p {
+    color: #34495e;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.doctor-card p:nth-of-type(2) {
+    font-weight: bold;
+}

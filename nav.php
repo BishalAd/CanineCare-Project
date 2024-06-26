@@ -28,7 +28,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <li><a href="AdoptSection.php">Adopt</a></li>
                 <li><a href="Shop.php">Shop</a></li>
                 <li><a href="Trainer.php">Training</a></li>
-                <li><a href="Care.html">Care</a></li>
+                <li><a href="CareSection.php">Care</a></li>
                 <li><a href="Aboutus.php">About Us</a></li>
             </ul>
             <ul class="horizontal-nav">
@@ -36,7 +36,7 @@ if (session_status() == PHP_SESSION_NONE) {
                 <li><a href="AdoptSection.php">Adopt</a></li>
                 <li><a href="Shop.php">Shop</a></li>
                 <li><a href="Trainer.php">Training</a></li>
-                <li><a href="Care.html">Care</a></li>
+                <li><a href="CareSection.php">Care</a></li>
                 <li><a href="Aboutus.php">About Us</a></li>
             </ul>
         </div>

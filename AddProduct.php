@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $delivery_option = $_POST['delivery_option'];
     $delivery_charge = $_POST['delivery_charge'];
     $payment_option = $_POST['payment_option'];
+    $created_by = $_SESSION['id']; // Assuming you store user_id in session
 
     // Validate input fields
     if (empty($name) || empty($price) || empty($description) || empty($category) || empty($delivery_option) || empty($delivery_charge) || empty($payment_option)) {
@@ -35,11 +36,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     function uploadImage($fileKey, $uploadDir) {
         if (isset($_FILES[$fileKey]) && $_FILES[$fileKey]['error'] === UPLOAD_ERR_OK) {
             $imageName = $_FILES[$fileKey]['name'];
-            $imageUniqueName = uniqid() . '_' . $imageName;
-            if (move_uploaded_file($_FILES[$fileKey]['tmp_name'], $uploadDir . $imageUniqueName)) {
-                return $imageUniqueName;
+            $imageTmpName = $_FILES[$fileKey]['tmp_name'];
+            $imageSize = $_FILES[$fileKey]['size'];
+            $imageError = $_FILES[$fileKey]['error'];
+            $imageType = $_FILES[$fileKey]['type'];
+
+            $imageExt = explode('.', $imageName);
+            $imageActualExt = strtolower(end($imageExt));
+
+            $allowed = array('jpg', 'jpeg', 'png', 'gif');
+
+            if (in_array($imageActualExt, $allowed)) {
+                if ($imageError === 0) {
+                    if ($imageSize < 5000000) { // 5MB max size
+                        $imageUniqueName = uniqid('', true) . "." . $imageActualExt;
+                        $imageDestination = $uploadDir . $imageUniqueName;
+
+                        if (move_uploaded_file($imageTmpName, $imageDestination)) {
+                            return $imageUniqueName;
+                        } else {
+                            die("Error moving file: $fileKey");
+                        }
+                    } else {
+                        die("Your file is too big.");
+                    }
+                } else {
+                    die("There was an error uploading your file.");
+                }
             } else {
-                die("Error moving file: $fileKey");
+                die("You cannot upload files of this type.");
             }
         } else {
             die("Image upload failed: $fileKey");
@@ -50,19 +75,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $img2 = uploadImage('img2', $uploadDir);
     $img3 = uploadImage('img3', $uploadDir);
 
-    // Insert product data into the database
-    $sql = "INSERT INTO product (name, price, img1, img2, img3, description, category, delivery_option, delivery_charge, payment_option) 
-            VALUES ('$name', $price, '$img1', '$img2', '$img3', '$description', '$category', '$delivery_option', '$delivery_charge', '$payment_option')";
+    // Insert product data into the database using prepared statements
+    $stmt = $conn->prepare("INSERT INTO product (name, price, img1, img2, img3, description, category, delivery_option, delivery_charge, payment_option, created_by) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sdsssssdsis", $name, $price, $img1, $img2, $img3, $description, $category, $delivery_option, $delivery_charge, $payment_option, $created_by);
 
-    if ($conn->query($sql) === TRUE) {
+    if ($stmt->execute()) {
         echo '<script>';
         echo "alert('New product created successfully');";
         echo 'setTimeout(function(){ window.location.href = "index.html"; }, 1000);';
         echo '</script>';
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo "Error: " . $stmt->error;
     }
 
+    $stmt->close();
     $conn->close();
 }
 ?>
@@ -72,14 +99,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Form</title>
+    <title>Add New Product</title>
     <link rel="stylesheet" href="AddProduct.css">
 </head>
 <body>
 
 <div class="form-container">
     <h2>Add New Product</h2>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="AddProduct.php" method="POST" enctype="multipart/form-data">
         <div class="form-group">
             <label for="name">Product Name</label>
             <input type="text" id="name" name="name" placeholder="Enter product name" required>

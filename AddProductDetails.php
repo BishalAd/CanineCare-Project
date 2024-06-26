@@ -22,7 +22,7 @@ if ($product_id <= 0) {
 $sql = "
     SELECT p.*, u.FullName as user_fullname, u.email as user_email, u.profileImage as user_profile
     FROM product p
-    JOIN users u ON p.product_id = u.id
+    JOIN users u ON p.created_by = u.id
     WHERE p.product_id = $product_id
 ";
 
@@ -60,7 +60,7 @@ $conn->close();
                     <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img1']); ?>" alt="Product Image 1" class="carousel-image active">
                     <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img2']); ?>" alt="Product Image 2" class="carousel-image">
                     <img src="Product_Img_uploads/<?php echo htmlspecialchars($product['img3']); ?>" alt="Product Image 3" class="carousel-image">
-                    <button class="next" onclick="nextImage()">&#10095;></button>
+                    <button class="next" onclick="nextImage()">&#10095;</button>
                 </div>
             </div>
             <div class="ProductInfo">
@@ -79,7 +79,7 @@ $conn->close();
                     <input type="hidden" name="quantity" id="quantity" value="1">
                     <button type="submit" name="add_to_cart" class="AddToCart">Add To Cart</button>
                 </form>
-                <div class="product-Discription">
+                <div class="product-Description">
                     <h2>Product Details</h2>
                     <p><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
                 </div>
