@@ -5,351 +5,360 @@
     justify-content: center;
 } */
 
-
-
 /* ---------------------- Add Product Form css ---------------------------------- */
 .form-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 60%;
-    width: 100%;
-    margin-left: 18.5%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 60%;
+  width: 100%;
+  margin-left: 18.5%;
 }
 .form-container h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
 }
 .form-group {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #555;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
 }
 .form-group input,
 .form-group select,
 .form-group textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
 }
 .form-group input[type="file"] {
-    padding: 3px;
+  padding: 3px;
 }
 .form-group textarea {
-    resize: vertical;
+  resize: vertical;
 }
 .submit-btn {
-    background-color: #28a745;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
 }
 .submit-btn:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
-
 
 /* --------------------------------------------Product details ------------------------------------------*/
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px;
 }
 
 .productInfo {
-    display: flex;
-    width: 100%;
-    justify-content: start;
-    margin-top: 50px;
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  width: 100%;
+  justify-content: start;
+  margin-top: 50px;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .ProductImg {
-    position: relative;
-    width: 400px;
-    height: 450px;
-    /* margin-right: 40px; */
-    border: 1px solid black;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-left: 5%;
-    margin-right: 10%;
+  position: relative;
+  width: 400px;
+  height: 450px;
+  /* margin-right: 40px; */
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-left: 5%;
+  margin-right: 10%;
+}
+
+.product-Description{
+    margin-top: 20px;
 }
 
 .carousel {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-    width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
 }
 
 .carousel-image {
-    display: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .carousel-image.active {
-    display: block;
+  display: block;
 }
 
 .carousel .prev,
 .carousel .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 2;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 2;
 }
 
 .carousel .prev {
-    left: 0;
+  left: 0;
 }
 
 .carousel .next {
-    right: 0;
+  right: 0;
 }
 
 .ProductInfo {
-    width: 50%;
+  width: 50%;
 }
 
 .Title-Price h2 {
-    color: rgb(104, 105, 106);
-    margin: 5px 0;
+  color: rgb(104, 105, 106);
+  margin: 5px 0;
 }
 
 .Title-Price h1 {
-    margin: 10px 0;
+  margin: 10px 0;
 }
 
 .Title-Price h2:last-of-type {
-    margin-top: 20px;
-    color: black;
+  margin-top: 20px;
+  color: black;
 }
 
 .counter-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.5em;
-    margin: 20px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.5em;
+  margin: 20px 0;
 }
 
 .count {
-    padding: 10px;
-    font-size: 1em;
-    border: 3px solid black;
-    background-color: white;
-    cursor: pointer;
+  padding: 10px;
+  font-size: 1em;
+  border: 3px solid black;
+  background-color: white;
+  cursor: pointer;
 }
 
 .AddToCart {
-    font-size: 18px;
-    border: 2px solid black;
-    padding: 10px 20px;
-    color: white;
-    background-color: black;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
+  font-size: 18px;
+  border: 2px solid black;
+  padding: 10px 20px;
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
 }
 
 .AddToCart:hover {
-    transform: scale(1.05);
-    background-color: rgb(60, 60, 60);
-    border-color: rgb(60, 60, 60);
+  transform: scale(1.05);
+  background-color: rgb(60, 60, 60);
+  border-color: rgb(60, 60, 60);
 }
 
 .product-Discription {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .product-Discription p {
-    font-size: 18px;
-    line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 .businessInfo {
-    width: 100%;
-    margin: 40px;
-    padding: 20px;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  margin: 40px 40px 10px 40px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .PostInfo h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+  margin-left: 5%;
+}
+
+.PostInfo h3 {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #555;
+  margin-left: 8%;
+}
+
+.PostInfo h3:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.PostInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.you-may-also-like h2{
     font-size: 1.8em;
     margin-bottom: 20px;
     color: #333;
     border-bottom: 2px solid #ccc;
     padding-bottom: 10px;
-    margin-left: 5%;
+    text-align: center;
 }
-
-.PostInfo h3 {
-    font-size: 1.2em;
-    margin: 10px 0;
-    color: #555;
-    margin-left: 8%;
-}
-
-.PostInfo h3:not(:last-child) {
-    margin-bottom: 15px;
-}
-
-.PostInfo {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
 
 .PostInfo i {
-    margin-right: 10px;
-    color: #575e66;
-    font-size: 1.2em;
+  margin-right: 10px;
+  color: #575e66;
+  font-size: 1.2em;
+}
+.comments-section {
+    margin: 80px 10%;
+    font-family: Arial, sans-serif;
+    align-items: center;
+
 }
 
-.rating {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.comments-section h2 {
+    font-size: 24px;
     margin-bottom: 20px;
 }
 
-.rating input {
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.comment-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.comment-form button {
+    width: 150px;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #218838;
+}
+
+.comment-list {
+    margin-top: 20px;
+}
+
+.comment {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+}
+
+.comment .comment-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.comment .comment-header span {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.comment .comment-body {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.star-rating {
+    direction: rtl;
+    display: inline-block;
+    padding: 10px;
+}
+
+.star-rating input {
     display: none;
 }
 
-.rating label {
-    font-size: 2em;
-    color: #ccc;
+.star-rating label {
+    color: #ddd;
+    font-size: 24px;
+    padding: 0;
     cursor: pointer;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
-.rating input:checked ~ label,
-.rating label:hover,
-.rating label:hover ~ label {
-    color: gold;
+.star-rating input:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+    color: #fd4;
 }
 
-.comment-section {
-    width: 70%;
-    width: 100%;
+.star-rating input:checked + label:hover,
+.star-rating input:checked ~ label:hover,
+.star-rating label:hover ~ input:checked ~ label,
+.star-rating input:checked ~ label:hover ~ label {
+    color: #ffed85;
 }
 
-.comment-section textarea {
-    width: 100%;
-    height: 50px;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: vertical;
+.star-rating label:before {
+    content: "\2605";
+}
+.similar-product {
+  /* padding: 15px; */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
 }
 
-.comment-section button {
-    display: block;
-    width: 100%;
-    margin: 20px 0;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #000000;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.comment-section button:hover {
-    background-color: #3c433d;
-}
-
-.comment-section {
-    max-width: 600px;
-    margin: 20px 0;
-}
-.comment-section textarea {
-    width: 100%;
-    height: 100px;
-    padding: 10px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: vertical;
-}
-.comment-section button {
-    display: block;
-    margin: 20px 0;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #000000;
-    color: white;
-    font-size: 1em;
-    cursor: pointer;
-}
-.comment-section button:hover {
-    background-color: #181e19;
-}
-
-/* Comments Display */
-.comments-display {
-    width: 60%;
-    margin: 20px auto;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-.comment {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-.comment:last-child {
-    border-bottom: none;
-}
-.comment p {
-    margin: 0;
-    font-size: 1em;
-    color: #333;
-}
-.comment-time {
-    font-size: 0.9em;
-    color: #999;
-    display: block;
-    margin-top: 5px;
+.lastPart{
+    margin: 50px 3%;
 }

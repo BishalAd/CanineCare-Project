@@ -358,6 +358,10 @@ nav {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.BoxCover{
+  text-decoration: none;
+}
+
 .box {
   text-align: center;
   border: 1px solid #ccc;
@@ -422,7 +426,7 @@ nav {
 }
 
 .add-cart {
-  background-color: #4caf50;
+  /* background-color: #4caf50; */
   color: white;
   padding: 10px 20px;
   border: none;
@@ -431,37 +435,50 @@ nav {
   font-size: 1em;
   transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  background-image: linear-gradient(to bottom, #4caf50, #388e3c);
+  background-image: linear-gradient(to bottom, rgb(246, 175, 43), rgb(245, 96, 42));
   margin-bottom: 10px;
+  font-weight: 600;
 }
 
 .add-cart:hover {
-  background-color: #439247;
+  background-image: linear-gradient(to bottom, rgb(242, 161, 12), rgb(245, 73, 11));
 }
 
 .view-details {
   border: none;
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   padding: 10px 20px;
   cursor: pointer;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   transition: background-color 0.3s ease;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #696969;
 }
 
 .view-details:hover {
-  background-color: #e0e0e0;
+  color: rgb(34, 34, 34);
 }
 
-.SeeMore{
+.SeeMore {
   font-size: 1.2em;
-  font-weight: bold;
-  color: #2a2727;
   margin-bottom: 10px;
   cursor: pointer;
   transition: color 0.3s ease;
   margin-top: 50px;
   text-decoration: none;
   text-align: center;
+}
+
+.SeeMore a{
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+.SeeMore:hover{
+  color: rgb(81, 81, 81) ;
+  transition: color 0.5s ease;
 }
 
 .AddProductBtn {
@@ -532,6 +549,9 @@ nav {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+.footerSection{
+  margin-top: 50px;
+}
 
 /* -------------------------------------------- Tranning Section --------------------------------- */
 .training-box {

@@ -5,46 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dog Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="DogDetails.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<?php include 'nav.php'; ?>
+    <?php include 'nav.php'; ?>
     <main class="DogDetailsContainer">
         <?php
-        // Enable error reporting
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
 
-        // Database credentials
         $servername = "localhost";
         $username = "root";
         $password = "";
         $dbname = "caninecare_db";
 
-        // Create connection
         $conn = new mysqli($servername, $username, $password, $dbname);
 
-        // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
 
-        // Check if dog_id is set
         if (isset($_GET['dog_id']) && !empty($_GET['dog_id'])) {
             $dog_id = $_GET['dog_id'];
 
-            // Prepare statement
             $stmt = $conn->prepare("SELECT dogs.*, users.FullName as owner_name, users.email as owner_email, users.profileImage as owner_image FROM dogs JOIN users ON dogs.user_id = users.id WHERE dogs.dog_id = ?");
             $stmt->bind_param("i", $dog_id);
 
-            // Execute statement
             $stmt->execute();
             $result = $stmt->get_result();
 
-            // Check if there are any results
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     $name = htmlspecialchars($row['name']);
@@ -102,62 +95,60 @@
             } else {
                 echo "Dog not found.";
             }
-
-            // Close statement
             $stmt->close();
         } else {
             echo "Invalid dog ID.";
         }
-
-        // Close connection
         $conn->close();
         ?>
-
         <div class="you-may-also-like">
+            <hr><br>
             <h2>You May Also Like</h2>
             <div class="similar-dogs">
                 <?php
-                // Reconnect to database
                 $conn = new mysqli($servername, $username, $password, $dbname);
-
-                // Check connection
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
-
-                // Fetch similar dogs
                 if (isset($breed)) {
                     $stmt = $conn->prepare("SELECT * FROM dogs WHERE breed = ? AND dog_id != ? LIMIT 3");
                     $stmt->bind_param("si", $breed, $dog_id);
                     $stmt->execute();
                     $result = $stmt->get_result();
 
-                    // Check if there are any results
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            $similar_dog_id = htmlspecialchars($row['dog_id']);
-                            $similar_dog_name = htmlspecialchars($row['name']);
-                            $similar_dog_image = htmlspecialchars($row['image']);
+                            $dog_id = $row['dog_id'];
+                            $name = $row['name'];
+                            $age = $row['age'];
+                            $breed = $row['breed'];
+                            $img1 = isset($row['image']) ? $row['image'] : 'default_image_path.jpg';
+                            $location = $row['location'];
+
+
+                            echo ' <a href="dogdetails.php?dog_id=' . urlencode($dog_id) . '" class="details-button">';
+                            echo '<div class="card">';
+                            echo ' <div class="card-image">';
+                            echo ' <img src="' . htmlspecialchars($img1) . '" alt="Dog image">';
+                            echo ' </div>';
+                            echo ' <div class="card-content">';
+                            echo ' <h3>' . htmlspecialchars($name) . '</h3>';
+                            echo ' <p>Breed: ' . htmlspecialchars($breed) . '</p>';
+                            echo ' <p>Age: ' . htmlspecialchars($age) . '</p>';
+                            echo ' <p>Location: ' . htmlspecialchars($location) . '</p>';
+                            echo ' </div>';
+                            echo ' <span><b>View Details</b></span>';
+                            echo '</div>';
+                            echo '</a>';
                 ?>
-
-                            <div class="similar-dog-card">
-                                <a href="index.php?dog_id=<?php echo $similar_dog_id; ?>">
-                                    <img src="<?php echo $similar_dog_image; ?>" alt="<?php echo $similar_dog_name; ?>">
-                                    <p><?php echo $similar_dog_name; ?></p>
-                                </a>
-                            </div>
-
                 <?php
                         }
                     } else {
                         echo "<p>No similar dogs found.</p>";
                     }
-
-                    // Close statement
                     $stmt->close();
                 }
 
-                // Close connection
                 $conn->close();
                 ?>
             </div>
@@ -179,8 +170,8 @@
                     <input value="0" name="pdc" type="hidden">
                     <input value="YOUR_ESEWA_MERCHANT_ID" name="scd" type="hidden">
                     <input id="esewa_pid" name="pid" type="hidden">
-                    <input value="http://yourwebsite.com/payment_success.php" type="hidden" name="su">
-                    <input value="http://yourwebsite.com/payment_failure.php" type="hidden" name="fu">
+                    <input value="payment_success.php" type="hidden" name="su">
+                    <input value="payment_failure.php" type="hidden" name="fu">
                     <button type="submit">Pay with eSewa</button>
                 </form>
             </div>
@@ -224,16 +215,21 @@
                 }
             }
         };
+
         var checkout = new KhaltiCheckout(config);
-        var btn = document.getElementById("khalti-payment-button");
-        btn.onclick = function() {
+
+        document.getElementById('khalti-payment-button').onclick = function() {
+            var price = document.getElementById('esewa_amt').value;
             checkout.show({
                 amount: price * 100
             });
-        }
+        };
     </script>
 
     <script src="script.js"></script>
+    <!-- <div class="FooterSection">
+        <?php include  'Footer.php' ?>
+    </div> -->
 </body>
 
 </html>

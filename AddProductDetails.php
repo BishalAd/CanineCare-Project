@@ -35,11 +35,26 @@ if ($result->num_rows > 0) {
     die("Product not found.");
 }
 
+// Handle comment submission
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment'])) {
+    $user_id = 1; // Replace with the actual logged-in user ID
+    $comment = $conn->real_escape_string($_POST['comment']);
+    $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
+
+    $sql = "INSERT INTO comments (product_id, user_id, comment, rating, created_at) VALUES ($product_id, $user_id, '$comment', $rating, NOW())";
+    if ($conn->query($sql) === TRUE) {
+        echo "New comment posted successfully";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
 $conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,73 +108,150 @@ $conn->close();
                 <h3><i class="fas fa-envelope"></i> Email: <?php echo htmlspecialchars($product['user_email']); ?></h3>
             </div>
         </div>
-
-        <h2>Product Rating</h2>
-        <div class="rating">
-            <input type="radio" name="star" id="star1"><label for="star1">&#9733;</label>
-            <input type="radio" name="star" id="star2"><label for="star2">&#9733;</label>
-            <input type="radio" name="star" id="star3"><label for="star3">&#9733;</label>
-            <input type="radio" name="star" id="star4"><label for="star4">&#9733;</label>
-            <input type="radio" name="star" id="star5"><label for="star5">&#9733;</label>
-        </div>
-
-        <h2>Leave a Comment</h2>
-        <div class="comment-section">
-            <textarea placeholder="Write your comment here..."></textarea>
-            <button type="button">Submit Comment</button>
-        </div>
-
-        <h2>Comments</h2>
-        <div class="comments-display">
-            <div class="comment">
-                <p><strong>John Doe:</strong> Great product! Highly recommend.</p>
-                <span class="comment-time">2 hours ago</span>
-            </div>
-            <div class="comment">
-                <p><strong>Jane Smith:</strong> Not satisfied with the quality.</p>
-                <span class="comment-time">1 day ago</span>
-            </div>
-        </div>
     </main>
 
+
+    <div class="lastPart">
+        <div class="you-may-also-like">
+            <h2>You May Also Like</h2>
+            <div class="similar-product">
+                <?php
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                if (isset($product['category'])) {
+                    $category = $product['category'];
+                    $stmt = $conn->prepare("SELECT * FROM product WHERE category = ? AND product_id != ? LIMIT 3");
+                    $stmt->bind_param("si", $category, $product_id);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            $product_id_similar = $row['product_id'];
+                            $name = $row['name'];
+                            $price = $row['price'];
+                            $img1 = isset($row['img1']) ? $row['img1'] : 'default_image_path.jpg';
+
+                            echo '    <a class="BoxCover" href="AddProductDetails.php?id=' . $product_id . '">';
+                            echo '<div class="box">';
+                            echo '    <div class="imgbox">';
+                            echo '        <img src="Product_Img_uploads/' . $img1 . '" alt="' . htmlspecialchars($name) . '" class="product-img">';
+                            echo '    </div>';
+                            echo '    <h2 class="product-title">' . htmlspecialchars($name) . '</h2><br>';
+                            echo '    <span class="price">RS ' . htmlspecialchars($price) . '</span>';
+                            echo '    <form action="shop.php" method="post">';
+                            echo '        <input type="hidden" name="product_id" value="' . $product_id . '">';
+                            echo '        <input type="hidden" name="name" value="' . htmlspecialchars($name) . '">';
+                            echo '        <input type="hidden" name="price" value="' . htmlspecialchars($price) . '">';
+                            echo '        <input type="hidden" name="img1" value="' . htmlspecialchars($img1) . '">';
+                            echo '        <button type="submit" name="add_to_cart" class="add-cart">Add to cart</button>';
+                            echo '    </form>';
+                            echo '        <button class="view-details">View Details</button>';
+                            echo '</div>';
+                            echo '</a>';
+                        }
+                    } else {
+                        echo '<p>No similar products found.</p>';
+                    }
+                }
+                $conn->close();
+                ?>
+            </div>
+        </div>
+
+        <div class="comments-section">
+            <h2>Customer Reviews</h2>
+            <form action="" method="post" class="comment-form">
+                <div class="star-rating">
+                    <input type="radio" id="5-stars" name="rating" value="5" />
+                    <label for="5-stars" class="star">&#9733;</label>
+                    <input type="radio" id="4-stars" name="rating" value="4" />
+                    <label for="4-stars" class="star">&#9733;</label>
+                    <input type="radio" id="3-stars" name="rating" value="3" />
+                    <label for="3-stars" class="star">&#9733;</label>
+                    <input type="radio" id="2-stars" name="rating" value="2" />
+                    <label for="2-stars" class="star">&#9733;</label>
+                    <input type="radio" id="1-star" name="rating" value="1" />
+                    <label for="1-star" class="star">&#9733;</label>
+                </div>
+                <textarea name="comment" rows="4" placeholder="Write your review here..." required></textarea>
+                <button type="submit">Post Comment</button>
+            </form>
+
+            <div class="comment-list">
+                <?php
+                $conn = new mysqli($servername, $username, $password, $dbname);
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                $sql = "SELECT c.*, u.FullName FROM comments c JOIN users u ON c.user_id = u.id WHERE c.product_id = $product_id ORDER BY c.created_at DESC";
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<div class="comment">';
+                        echo '    <div class="comment-header">';
+                        echo '        <span>' . htmlspecialchars($row['FullName']) . '</span>';
+                        echo '        <span>' . str_repeat('&#9733;', $row['rating']) . str_repeat('&#9734;', 5 - $row['rating']) . '</span>';
+                        echo '    </div>';
+                        echo '    <div class="comment-body">';
+                        echo '        <p>' . nl2br(htmlspecialchars($row['comment'])) . '</p>';
+                        echo '        <small>Posted on ' . htmlspecialchars($row['created_at']) . '</small>';
+                        echo '    </div>';
+                        echo '</div>';
+                    }
+                } else {
+                    echo "<p>No comments yet. Be the first to comment!</p>";
+                }
+
+                $conn->close();
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <?php include 'footer.php'; ?>
+
     <script>
-        let currentNumber = 1;
-
-        function increase() {
-            currentNumber++;
-            document.getElementById('number').textContent = currentNumber;
-        }
-
-        function decrease() {
-            if (currentNumber > 1) {
-                currentNumber--;
-                document.getElementById('number').textContent = currentNumber;
-            }
-        }
-
-        function updateQuantity() {
-            document.getElementById('quantity').value = currentNumber;
-        }
-
-        // Carousel functionality
-        let currentIndex = 0;
+        let currentImageIndex = 0;
         const images = document.querySelectorAll('.carousel-image');
 
         function showImage(index) {
-            images.forEach((img, i) => {
-                img.classList.toggle('active', i === index);
-            });
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % images.length;
-            showImage(currentIndex);
+            images[currentImageIndex].classList.remove('active');
+            images[index].classList.add('active');
+            currentImageIndex = index;
         }
 
         function prevImage() {
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            showImage(currentIndex);
+            const index = (currentImageIndex - 1 + images.length) % images.length;
+            showImage(index);
+        }
+
+        function nextImage() {
+            const index = (currentImageIndex + 1) % images.length;
+            showImage(index);
+        }
+
+        function updateQuantity() {
+            const quantity = document.getElementById('number').innerText;
+            document.getElementById('quantity').value = quantity;
+        }
+
+        function increase() {
+            const numberElement = document.getElementById('number');
+            numberElement.innerText = parseInt(numberElement.innerText) + 1;
+        }
+
+        function decrease() {
+            const numberElement = document.getElementById('number');
+            const currentValue = parseInt(numberElement.innerText);
+            if (currentValue > 1) {
+                numberElement.innerText = currentValue - 1;
+            }
         }
     </script>
 </body>
+
 </html>

@@ -264,6 +264,7 @@
                     $img1 = isset($row['image']) ? $row['image'] : 'default_image_path.jpg';
                     $location = $row['location'];
 
+                    echo '<a href="dogdetails.php?dog_id=' . urlencode($dog_id) . '" class="details-button">';
                     echo '<div class="card">';
                     echo '    <div class="card-image">';
                     echo '        <img src="' . htmlspecialchars($img1) . '" alt="Dog image">';
@@ -273,9 +274,10 @@
                     echo '        <p>Breed: ' . htmlspecialchars($breed) . '</p>';
                     echo '        <p>Age: ' . htmlspecialchars($age) . '</p>';
                     echo '        <p>Location: ' . htmlspecialchars($location) . '</p>';
-                    echo '        <a href="dogdetails.php?dog_id=' . urlencode($dog_id) . '" class="details-button">View Details</a>';
                     echo '    </div>';
+                    echo '<span><b>View Details</b></span>';
                     echo '</div>';
+                    echo '</a>';
                 }
             } else {
                 echo '<p class="no-dogs-message">No dogs found.</p>';

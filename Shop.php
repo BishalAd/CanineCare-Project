@@ -120,6 +120,7 @@ if (isset($_POST['add_to_cart'])) {
             $img1 = $row['img1'];
             $description = $row['description'];
 
+            echo '    <a class="BoxCover" href="AddProductDetails.php?id=' . $product_id . '">';
             echo '<div class="box">';
             echo '    <div class="imgbox">';
             echo '        <img src="Product_Img_uploads/' . $img1 . '" alt="' . htmlspecialchars($name) . '" class="product-img">';
@@ -133,18 +134,22 @@ if (isset($_POST['add_to_cart'])) {
             echo '        <input type="hidden" name="img1" value="' . htmlspecialchars($img1) . '">';
             echo '        <button type="submit" name="add_to_cart" class="add-cart">Add to cart</button>';
             echo '    </form>';
-            echo '    <a href="AddProductDetails.php?id=' . $product_id . '">';
             echo '        <button class="view-details">View Details</button>';
             echo '</div>';
+            echo '</a>';
         }
     } else {
-        echo "No products found.";
+        echo '<span class="NoProductFoundMsg">No products found.</span>';
     }
     echo '</div>';
 
     $conn->close();
     ?>
 </main>
+<div class="footerSection">
+    <?php include  'Footer.php' ?>
+</div>
+
 <script src="script.js"></script>
 <script>
         // Get all add to cart buttons
@@ -170,3 +175,6 @@ if (isset($_POST['add_to_cart'])) {
 </body>
 
 </html>
+
+
+

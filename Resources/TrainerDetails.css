@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.trainer-details-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.trainer-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.trainer-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.trainer-info h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.trainer-info p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.social-links a {
+    margin-right: 10px;
+    color: #555;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: #000;
+}
+
+.charges-list {
+    margin-top: 30px;
+}
+
+.charges-list h3 {
+    font-size: 20px;
+    color: #333;
+}
+
+.charges-list table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.charges-list table, .charges-list th, .charges-list td {
+    border: 1px solid #ddd;
+}
+
+.charges-list th, .charges-list td {
+    padding: 10px;
+    text-align: left;
+}
+
+.charges-list th {
+    background-color: #f4f4f4;
+}

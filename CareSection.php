@@ -154,14 +154,13 @@
                     <input value="0" name="pdc" type="hidden">
                     <input value="YOUR_ESEWA_MERCHANT_ID" name="scd" type="hidden">
                     <input value="YOUR_INVOICE_NUMBER" name="pid" type="hidden">
-                    <input value="http://yourwebsite.com/payment_success.php" type="hidden" name="su">
-                    <input value="http://yourwebsite.com/payment_failure.php" type="hidden" name="fu">
+                    <input value="payment_success.php" type="hidden" name="su">
+                    <input value="payment_failure.php" type="hidden" name="fu">
                     <button type="submit">Pay with eSewa</button>
                 </form>
             </div>
         </div>
     </div>
-
     <script src="https://khalti.com/static/khalti-checkout.js"></script>
     <script>
         var config = {
@@ -214,7 +213,7 @@
             document.getElementById("paymentPopupForm").style.display = "none";
         }
     </script>
-
+    <?php include  'Footer.php' ?>
     <script src="script.js"></script>
 </body>
 
