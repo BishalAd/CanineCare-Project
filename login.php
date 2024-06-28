@@ -13,8 +13,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['login'])) {
         $email = trim($_POST['email']);
@@ -58,8 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $role = $_POST['role'];
         $email = trim($_POST['email']);
         $newPassword = $_POST['password'];
+        $phone = trim($_POST['phone']);
 
-        if (empty($FullName) || empty($role) || empty($email) || empty($newPassword) || empty($_FILES['profile']['name'])) {
+        if (empty($FullName) || empty($role) || empty($email) || empty($newPassword) || empty($_FILES['profile']['name']) || empty($phone)) {
             die("All fields are required.");
         }
 
@@ -113,9 +112,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO users (FullName, role, email, password, profileImage) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO users (FullName, role, email, password, profileImage, phone) VALUES (?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssss", $FullName, $role, $email, $hashedPassword, $unique_file_name);
+        $stmt->bind_param("ssssss", $FullName, $role, $email, $hashedPassword, $unique_file_name, $phone);
 
         if ($stmt->execute() === TRUE) {
             $_SESSION['id'] = $stmt->insert_id;
@@ -127,6 +126,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo '</script>';
         } else {
             echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    } elseif (isset($_POST['forgot_password'])) {
+        $email = trim($_POST['email']);
+
+        if (empty($email)) {
+            die("Email is required.");
+        }
+
+        $sql = "SELECT * FROM users WHERE email = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0) {
+            $code = rand(100000, 999999);
+            $_SESSION['reset_code'] = $code;
+            $_SESSION['reset_email'] = $email;
+
+            // Here you would send the email with the code
+            // mail($email, "Your Password Reset Code", "Your code is: " . $code);
+
+            echo '<script>';
+            echo 'alert("A reset code has been sent to your email.");';
+            echo 'window.location.href = "reset_password.php";';
+            echo '</script>';
+        } else {
+            echo '<script>';
+            echo 'alert("No account found with that email.");';
+            echo 'window.location.href = "login.php";';
+            echo '</script>';
         }
 
         $stmt->close();
@@ -153,23 +185,37 @@ $conn->close();
             <!-- <button class="close-btn">X</button> -->
             <form action="" method="POST" enctype="multipart/form-data">
                 <h1>Create Account</h1>
-                <label for="FullName">Full Name</label>
-                <input type="text" placeholder="Full Name" name="FullName" id="FullName" required>
-                <label for="role">Role</label>
-                <select name="role" id="role" required>
-                    <option value="" disabled selected>Select your role</option>
-                    <option value="User">User</option>
-                    <option value="Trainer">Trainer</option>
-                    <option value="Doctor">Doctor</option>
-                    <option value="Business">Saller</option>
-                    <option value="Other">Other</option>
-                </select>
-                <label for="email">Email</label>
-                <input type="email" placeholder="Email" name="email" id="email" required>
-                <label for="password">Password</label>
-                <input type="password" placeholder="Password" name="password" id="password" required>
-                <label for="profile">Profile Image</label>
-                <input type="file" name="profile" id="profile" accept="image/*" required><br>
+                <div class="form-group">
+                    <label for="FullName">Full Name</label>
+                    <input type="text" placeholder="Full Name" name="FullName" id="FullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select name="role" id="role" required>
+                        <option value="" disabled selected>Select your role</option>
+                        <option value="User">User</option>
+                        <option value="Trainer">Trainer</option>
+                        <option value="Doctor">Doctor</option>
+                        <option value="Seller">Seller</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Email" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" placeholder="Phone Number" name="phone" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Password" name="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="profile">Profile Image</label>
+                    <input type="file" name="profile" id="profile" accept="image/*" required><br>
+                </div>
                 <button type="submit" name="signup">Sign Up</button>
             </form>
         </div>
@@ -177,11 +223,15 @@ $conn->close();
             <!-- <button class="close-btn">X</button> -->
             <form action="" method="POST">
                 <h1>Sign In</h1>
-                <label for="email">Email</label>
-                <input type="email" placeholder="Email" name="email" id="email">
-                <label for="password">Password</label>
-                <input type="password" placeholder="Password" name="password" id="password">
-                <a href="#">Forget Your Password?</a>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Email" name="email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" placeholder="Password" name="password" id="password">
+                </div>
+                <a href="#">Forgot your password?</a>
                 <button type="submit" name="login">Sign In</button>
             </form>
         </div>
@@ -189,30 +239,28 @@ $conn->close();
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
                     <h1>Welcome Back!</h1>
-                    <p>Enter your personal details to use all of site features</p>
-                    <button class="hidden" id="login">Sign In</button>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="hidden" id="signIn">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
-                    <button class="hidden" id="register">Sign Up</button>
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="hidden" id="signUp">Sign Up</button>
                 </div>
             </div>
         </div>
     </div>
     <script>
-        document.getElementById('register').addEventListener('click', () => {
-            document.getElementById('container').classList.add('active');
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+        const container = document.getElementById('container');
+
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("active");
         });
 
-        document.getElementById('login').addEventListener('click', () => {
-            document.getElementById('container').classList.remove('active');
-        });
-
-        document.querySelectorAll('.close-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.getElementById('container').classList.remove('active');
-            });
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("active");
         });
     </script>
 </body>

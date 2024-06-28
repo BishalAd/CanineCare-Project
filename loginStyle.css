@@ -15,10 +15,13 @@ body {
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    background-image: url('https://example.com/path-to-your-dog-image.jpg'); /* Replace with your dog image URL */
+    background-size: cover;
+    background-position: center;
 }
 
 .container {
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.9); /* Slight transparency */
     border-radius: 30px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
@@ -75,26 +78,30 @@ body {
     height: 100%;
 }
 
-.container input {
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin: 8px 0;
+}
+
+.form-group label {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.form-group input, .form-group select {
+    flex: 2;
     background-color: #eee;
     border: none;
-    margin: 8px 0;
     padding: 10px 15px;
     font-size: 13px;
     border-radius: 8px;
-    width: 100%;
     outline: none;
 }
 
 select {
-    background-color: #eee;
-    border: none;
-    margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 8px;
-    width: 100%;
-    outline: none;
     appearance: none;
     background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M10 11.293L3.707 5l-1.414 1.414L10 14.121l7.707-7.707-1.414-1.414L10 11.293z"/></svg>');
     background-repeat: no-repeat;
@@ -102,7 +109,7 @@ select {
     background-size: 14px;
 }
 
-select:focus {
+select:focus, input:focus {
     box-shadow: 0 0 0 2px #512da8;
 }
 
@@ -199,6 +206,9 @@ select:focus {
 
 .toggle-left {
     transform: translateX(-200%);
+    background-image: url('https://example.com/path-to-your-dog-image1.jpg'); /* Replace with your dog image URL */
+    background-size: cover;
+    background-position: center;
 }
 
 .container.active .toggle-left {
@@ -208,6 +218,9 @@ select:focus {
 .toggle-right {
     right: 0;
     transform: translateX(0);
+    background-image: url('https://example.com/path-to-your-dog-image2.jpg'); /* Replace with your dog image URL */
+    background-size: cover;
+    background-position: center;
 }
 
 .container.active .toggle-right {

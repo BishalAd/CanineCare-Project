@@ -100,7 +100,7 @@ if (isset($_POST['add_to_cart'])) {
     echo '</form>';
 
     echo '<div id="products">';
-    $sql = "SELECT * FROM product";
+    $sql = "SELECT * FROM product WHERE hidden=0";
     if ($filter == 'food') {
         $sql .= " WHERE category = 'food'";
     } elseif ($filter == 'accessories') {

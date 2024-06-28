@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    color: #fff;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #000;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+.dashboard-stats {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.dashboard-stats {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.stat {
+    flex: 1;
+    min-width: 200px;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+.stat h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.stat p {
+    margin: 10px 0 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.detailed-stats {
+    margin-top: 20px;
+}
+
+.detail {
+    margin: 20px 0;
+}
+
+.detail h3 {
+    font-size: 1.5em;
+}
+
+.detail ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.detail ul li {
+    background-color: #f1f1f1;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 3px;
+}

@@ -223,7 +223,7 @@
                 die("Connection failed: " . $conn->connect_error);
             }
 
-            $sql = "SELECT * FROM dogs WHERE 1=1";
+            $sql = "SELECT * FROM dogs WHERE hidden = 0";
 
             // Add filters to query
             if (!empty($_GET['state'])) {

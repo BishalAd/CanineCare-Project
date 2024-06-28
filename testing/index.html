@@ -1,34 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Socials - 01</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <title>Dog Symptom Checker</title>
     <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <ul class="wrapper">
-      <li class="icon facebook">
-        <span class="tooltip">Facebook</span>
-        <span><i class="fab fa-facebook-f"></i></span>
-      </li>
-      <li class="icon twitter">
-        <span class="tooltip">Twitter</span>
-        <span><i class="fab fa-twitter"></i></span>
-      </li>
-      <li class="icon instagram">
-        <span class="tooltip">Instagram</span>
-        <span><i class="fab fa-instagram"></i></span>
-      </li>
-      <li class="icon github">
-        <span class="tooltip">Github</span>
-        <span><i class="fab fa-github"></i></span>
-      </li>
-      <li class="icon youtube">
-        <span class="tooltip">Youtube</span>
-        <span><i class="fab fa-youtube"></i></span>
-      </li>
-    </ul>
-  </body>
+</head>
+<body>
+    <div class="container">
+        <div class="progress-bar">
+            <div class="step active">Pet Details</div>
+            <div class="step">Main Symptom</div>
+            <div class="step">Symptom Details</div>
+            <div class="step">Report</div>
+        </div>
+        <form id="symptomCheckerForm" onsubmit="return false;">
+            <div class="step-content active" id="step-1">
+                <h2>Tell us about your dog</h2>
+                <label>What's their sex?</label>
+                <div>
+                    <input type="radio" id="male" name="sex" value="male">
+                    <label for="male">Male</label>
+                </div>
+                <div>
+                    <input type="radio" id="female" name="sex" value="female">
+                    <label for="female">Female</label>
+                </div>
+                <button type="button" onclick="nextStep(2)">Next</button>
+            </div>
+            <div class="step-content" id="step-2" style="display:none;">
+                <h2>Main Symptom</h2>
+                <label>Select the main symptom</label>
+                <select name="mainSymptom" id="mainSymptom">
+                    <option value="coughing">Coughing</option>
+                    <option value="vomiting">Vomiting</option>
+                    <option value="diarrhea">Diarrhea</option>
+                    <!-- Add more symptoms as needed -->
+                </select>
+                <button type="button" onclick="prevStep(1)">Back</button>
+                <button type="button" onclick="nextStep(3)">Next</button>
+            </div>
+            <div class="step-content" id="step-3" style="display:none;">
+                <h2>Symptom Details</h2>
+                <label>Describe the symptom in more detail</label>
+                <textarea name="symptomDetails" id="symptomDetails" rows="4" cols="50"></textarea>
+                <button type="button" onclick="prevStep(2)">Back</button>
+                <button type="button" onclick="generateReport()">Generate Report</button>
+            </div>
+            <div class="step-content" id="step-4" style="display:none;">
+                <h2>Report</h2>
+                <p id="reportContent"></p>
+                <button type="button" onclick="prevStep(3)">Back</button>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
 </html>

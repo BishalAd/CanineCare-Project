@@ -140,61 +140,71 @@
     </div>
 
     <!-- Payment Popup Form -->
-    <div id="paymentPopupForm" class="popup-form">
-        <div class="popup-content">
-            <span class="popup-close" onclick="closePaymentPopup()">&times;</span>
-            <div class="payment-container">
-                <h2>Choose Payment Method</h2>
-                <button id="khalti-payment-button">Pay with Khalti</button>
-                <form action="https://uat.esewa.com.np/epay/main" method="POST">
-                    <input value="199" name="tAmt" type="hidden">
-                    <input value="199" name="amt" type="hidden">
-                    <input value="0" name="txAmt" type="hidden">
-                    <input value="0" name="psc" type="hidden">
-                    <input value="0" name="pdc" type="hidden">
-                    <input value="YOUR_ESEWA_MERCHANT_ID" name="scd" type="hidden">
-                    <input value="YOUR_INVOICE_NUMBER" name="pid" type="hidden">
-                    <input value="payment_success.php" type="hidden" name="su">
-                    <input value="payment_failure.php" type="hidden" name="fu">
-                    <button type="submit">Pay with eSewa</button>
-                </form>
-            </div>
+<div id="paymentPopupForm" class="popup-form">
+    <div class="popup-content">
+        <span class="popup-close" onclick="closePaymentPopup()">&times;</span>
+        <div class="payment-container">
+            <h2>Choose Payment Method</h2>
+            <button id="khalti-payment-button">Pay with Khalti</button>
+            <form id="esewa-form" action="https://uat.esewa.com.np/epay/main" method="POST">
+                <input value="199" name="tAmt" type="hidden">
+                <input value="199" name="amt" type="hidden">
+                <input value="0" name="txAmt" type="hidden">
+                <input value="0" name="psc" type="hidden">
+                <input value="0" name="pdc" type="hidden">
+                <input value="YOUR_ESEWA_MERCHANT_ID" name="scd" type="hidden">
+                <input value="YOUR_INVOICE_NUMBER" name="pid" type="hidden">
+                <input value="payment_success.php" type="hidden" name="su">
+                <input value="payment_failure.php" type="hidden" name="fu">
+                <button type="submit">Pay with eSewa</button>
+            </form>
         </div>
     </div>
-    <script src="https://khalti.com/static/khalti-checkout.js"></script>
-    <script>
-        var config = {
-            publicKey: "YOUR_KHALTI_PUBLIC_KEY",
-            productIdentity: "1234567890",
-            productName: "Canine Care Service",
-            productUrl: "http://bishaladhikari7.com.np",
-            eventHandler: {
-                onSuccess(payload) {
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = 'payment_success.php';
-                    form.innerHTML = '<input type="hidden" name="payment_token" value="' + payload.token + '">' +
-                        '<input type="hidden" name="amount" value="' + payload.amount + '">' +
-                        '<input type="hidden" name="payment_method" value="khalti">';
-                    document.body.appendChild(form);
-                    form.submit();
-                },
-                onError(error) {
-                    console.log(error);
-                },
-                onClose() {
-                    console.log('Widget is closing');
-                }
+</div>
+<script src="https://khalti.com/static/khalti-checkout.js"></script>
+<script>
+    var config = {
+        publicKey: "test_public_key_d7636da7c54a41e0af3f6f1689e2d85e",
+        productIdentity: "1234567890",
+        productName: "Canine Care Service",
+        productUrl: "http://bishaladhikari7.com.np",
+        eventHandler: {
+            onSuccess(payload) {
+                var form = document.createElement('form');
+                form.method = 'POST';
+                form.action = 'payment_success.php';
+                form.innerHTML = '<input type="hidden" name="payment_token" value="' + payload.token + '">' +
+                    '<input type="hidden" name="amount" value="' + payload.amount + '">' +
+                    '<input type="hidden" name="payment_method" value="khalti">';
+                document.body.appendChild(form);
+                form.submit();
+            },
+            onError(error) {
+                console.log(error);
+            },
+            onClose() {
+                console.log('Widget is closing');
             }
-        };
-        var checkout = new KhaltiCheckout(config);
-        var btn = document.getElementById("khalti-payment-button");
-        btn.onclick = function() {
-            checkout.show({
-                amount: 19900
-            });
         }
-    </script>
+    };
+    var checkout = new KhaltiCheckout(config);
+    var btn = document.getElementById("khalti-payment-button");
+    btn.onclick = function() {
+        checkout.show({
+            amount: 19900
+        });
+    }
+</script>
+
+<script>
+    function showPaymentPopup() {
+        document.getElementById("paymentPopupForm").style.display = "block";
+    }
+
+    function closePaymentPopup() {
+        document.getElementById("paymentPopupForm").style.display = "none";
+    }
+</script>
 
     <script>
         function openPopup() {

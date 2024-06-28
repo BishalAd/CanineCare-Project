@@ -1,102 +1,79 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
-* {
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-html,
-body {
-  display: grid;
-  height: 100%;
-  width: 100%;
-  font-family: "Poppins", sans-serif;
-  place-items: center;
-  /* background: linear-gradient(315deg, #ffffff, #d7e1ec); */
-  background-color: rgb(34, 34, 33);
+.container {
+  width: 50%;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-.wrapper {
-  display: inline-flex;
-  list-style: none;
-}
-
-.wrapper .icon {
-  position: relative;
-  background: #ffffff;
-  border-radius: 50%;
-  padding: 15px;
-  margin: 10px;
-  width: 50px;
-  height: 50px;
-  font-size: 18px;
+.progress-bar {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.progress-bar .step {
+  width: 25%;
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 3px solid #ccc;
+  position: relative;
+}
+
+.progress-bar .step.active {
+  border-bottom: 3px solid #007bff;
+}
+
+.step-content {
+  display: none;
+}
+
+.step-content.active {
+  display: block;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background: #007bff;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  margin-top: 20px;
 }
 
-.wrapper .tooltip {
-  position: absolute;
-  top: 0;
-  font-size: 14px;
-  background: #ffffff;
-  color: #ffffff;
-  padding: 5px 8px;
-  border-radius: 5px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+button:hover {
+  background: #0056b3;
 }
 
-.wrapper .tooltip::before {
-  position: absolute;
-  content: "";
-  height: 8px;
-  width: 8px;
-  background: #ffffff;
-  bottom: -3px;
-  left: 50%;
-  transform: translate(-50%) rotate(45deg);
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-.wrapper .icon:hover .tooltip {
-  top: -45px;
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.wrapper .icon:hover span,
-.wrapper .icon:hover .tooltip {
-  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.1);
-}
-
-.facebook {
-  --color: #1877f2;
-}
-.twitter {
-  --color: #1da1f2;
-}
-.instagram {
-  --color: #e4405f;
-}
-.github {
-  --color: #333333;
-}
-.youtube {
-  --color: #cd201f;
-}
-
-.icon:hover,
-.icon:hover .tooltip,
-.icon:hover .tooltip::before {
-  background: var(--color);
-  color: white;
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 10px;
 }
