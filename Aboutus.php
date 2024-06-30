@@ -82,7 +82,7 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $name = htmlspecialchars($_POST['name']);
             $message = htmlspecialchars($_POST['message']);
-            $to = "thapahimal567@gmail.com"; // Replace with your email address
+            $to = "canineecare7@gmail.com"; // Replace with your email address
             $subject = "New Message from Contact Form";
             $body = "Name: $name\n\nMessage:\n$message";
             $headers = "From: webmaster@example.com"; // Replace with your website's domain

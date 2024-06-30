@@ -109,7 +109,7 @@
         </div>
         <div class="other-section">
             <div class="adopt-section">
-                <a href="Adopt.html">
+                <a href="CareSection.php">
                     <h1>Dog Care</h1>
                     <div class="Dog-img" style="margin-left: -50px;">
                         <img src="Resources/DogCheckup.png" alt="Dog Check Up Image">

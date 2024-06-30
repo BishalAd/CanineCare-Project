@@ -1,92 +1,3 @@
-$(document).ready(function () {
-    var typed = new Typed(".typing", {
-        strings: ["Help You Adopt Dogs", "Provide Dog Accessories", "Assist with Dog Training", "Ensure Check-ups and Care", "Offer Dog Boarding Services", "Connect You with Vets"],
-        typeSpeed: 100,
-        backSpeed: 60,
-        loop: true
-    });
-});
-
-// Menu Bar
-
-function showSidebar() {
-    const sidebar = document.querySelector('.sidebar')
-    sidebar.style.display = 'flex'
-}
-
-function hideSidebar() {
-    const sidebar = document.querySelector('.sidebar')
-    sidebar.style.display = 'none'
-}
-
-
-// --------------------------------- Adopt Section Js ----------------------------------
-// JavaScript code to handle form display and dynamic district population
-
-document.addEventListener('DOMContentLoaded', () => {
-    const stateSelect = document.getElementById('dogState');
-    const districtSelect = document.getElementById('dogDistrict');
-    const filterStateSelect = document.getElementById('filterState');
-    const filterDistrictSelect = document.getElementById('filterDistrict');
-
-    stateSelect.addEventListener('change', () => {
-        populateDistricts(stateSelect, districtSelect);
-    });
-
-    filterStateSelect.addEventListener('change', () => {
-        populateDistricts(filterStateSelect, filterDistrictSelect);
-    });
-});
-
-function populateDistricts(stateSelect, districtSelect) {
-    const state = stateSelect.value;
-    let districts = [];
-
-    switch (state) {
-        case 'Province 1':
-            districts = ['District 1', 'District 2', 'District 3'];
-            break;
-        case 'Province 2':
-            districts = ['District 4', 'District 5', 'District 6'];
-            break;
-        case 'Bagmati':
-            districts = ['Kathmandu', 'Lalitpur', 'Bhaktapur'];
-            break;
-        case 'Gandaki':
-            districts = ['District 10', 'District 11', 'District 12'];
-            break;
-        case 'Lumbini':
-            districts = ['District 13', 'District 14', 'District 15'];
-            break;
-        case 'Karnali':
-            districts = ['District 16', 'District 17', 'District 18'];
-            break;
-        case 'Sudurpashchim':
-            districts = ['District 19', 'District 20', 'District 21'];
-            break;
-        default:
-            districts = [];
-    }
-
-    districtSelect.innerHTML = '<option value="" disabled selected>Select District</option>';
-
-    districts.forEach(district => {
-        const option = document.createElement('option');
-        option.value = district;
-        option.textContent = district;
-        districtSelect.appendChild(option);
-    });
-}
-
-function showForm() {
-    document.getElementById('trainerFormPopup').style.display = 'block';
-}
-
-function hideForm() {
-    document.getElementById('trainerFormPopup').style.display = 'none';
-}
-
-
 function nextStep(step) {
     var currentStep = document.querySelector('.step-content.active');
     currentStep.classList.remove('active');
@@ -95,7 +6,7 @@ function nextStep(step) {
     nextStep.classList.add('active');
 
     var steps = document.querySelectorAll('.progress-bar .step');
-    steps.forEach(function (element, index) {
+    steps.forEach(function(element, index) {
         if (index < step - 1) {
             element.classList.add('active');
         } else {
@@ -112,7 +23,7 @@ function prevStep(step) {
     prevStep.classList.add('active');
 
     var steps = document.querySelectorAll('.progress-bar .step');
-    steps.forEach(function (element, index) {
+    steps.forEach(function(element, index) {
         if (index < step - 1) {
             element.classList.add('active');
         } else {
@@ -154,26 +65,26 @@ function generateReport() {
     const diagnosis = generateDiagnosis(mainSymptom);
 
     const reportContent = `
-            <strong>User Details:</strong><br>
-            Full Name: ${fullName}<br>
-            Phone: ${phone}<br>
-            Email: ${email}<br><br>
-            <strong>Pet Details:</strong><br>
-            Sex: ${sex}<br>
-            Age: ${age}<br><br>
-            <strong>Symptom Details:</strong><br>
-            Main Symptom: ${mainSymptom}<br>
-            Symptom Details: ${symptomDetails}<br><br>
-            <strong>Diagnosis:</strong><br>
-            ${diagnosis}
-        `;
+        <strong>User Details:</strong><br>
+        Full Name: ${fullName}<br>
+        Phone: ${phone}<br>
+        Email: ${email}<br><br>
+        <strong>Pet Details:</strong><br>
+        Sex: ${sex}<br>
+        Age: ${age}<br><br>
+        <strong>Symptom Details:</strong><br>
+        Main Symptom: ${mainSymptom}<br>
+        Symptom Details: ${symptomDetails}<br><br>
+        <strong>Diagnosis:</strong><br>
+        ${diagnosis}
+    `;
 
     document.getElementById('reportContent').innerHTML = reportContent;
 
     nextStep(5);
 }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('step-1').classList.add('active');
 });
 
@@ -187,6 +98,8 @@ function printReport() {
     printWindow.document.close();
     printWindow.print();
 }
+
+
 
 var config = {
     publicKey: "test_public_key_d7636da7c54a41e0af3f6f1689e2d85e",
@@ -214,8 +127,32 @@ var config = {
 };
 var checkout = new KhaltiCheckout(config);
 var btn = document.getElementById("khalti-payment-button");
-btn.onclick = function () {
+btn.onclick = function() {
     checkout.show({
         amount: 19900
     });
+}
+
+function showPaymentPopup() {
+    document.getElementById("paymentPopupForm").style.display = "block";
+}
+
+function closePaymentPopup() {
+    document.getElementById("paymentPopupForm").style.display = "none";
+}
+
+function openPopup() {
+    document.getElementById("popupForm").style.display = "block";
+}
+
+function closePopup() {
+    document.getElementById("popupForm").style.display = "none";
+}
+
+function showPaymentPopup() {
+    document.getElementById("paymentPopupForm").style.display = "block";
+}
+
+function closePaymentPopup() {
+    document.getElementById("paymentPopupForm").style.display = "none";
 }

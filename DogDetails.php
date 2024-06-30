@@ -12,7 +12,7 @@
 
 <body>
     <?php include 'nav.php'; ?>
-    <main class="DogDetailsContainer">
+    <main class="DogDetailsContainer" style="padding-top: 130px; margin-top: 0px;">
         <?php
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
@@ -227,9 +227,6 @@
     </script>
 
     <script src="script.js"></script>
-    <!-- <div class="FooterSection">
-        <?php include  'Footer.php' ?>
-    </div> -->
+    <?php include  'Footer.php' ?>
 </body>
-
 </html>

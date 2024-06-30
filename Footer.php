@@ -23,11 +23,11 @@
           <h3>Quick Links</h3>
           <ul class="footer-list">
             <li><a href="index.php">Home</a></li>
-            <li><a href="adopt.php">Adopt</a></li>
-            <li><a href="shop.php">Shop</a></li>
-            <li><a href="training.php">Training</a></li>
-            <li><a href="care.php">Care</a></li>
-            <li><a href="about.php">About Us</a></li>
+            <li><a href="AdoptSection.php">Adopt</a></li>
+            <li><a href="Shop.php">Shop</a></li>
+            <li><a href="Trainer.php">Training</a></li>
+            <li><a href="CareSection.php">Care</a></li>
+            <li><a href="AboutUs.php">About Us</a></li>
           </ul>
         </div>
         <div class="footer-col">

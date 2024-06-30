@@ -91,7 +91,7 @@
                 <source src="Resources/Video4.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
-            <div class="black-overlay"></div>
+            <div class="black-overlay style='height: 100%;'"></div>
             <div class="content">
                 <p>Welcome to </p>
                 <h1>CanineCare!</h1>

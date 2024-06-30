@@ -11,10 +11,11 @@
 
 <body>
     <?php include 'nav.php'; ?>
+    <div class="Training-Heading">
+        <h1 style="margin-top: 55px;">Our Trainers</h1>
+    </div>
     <div class="TrainerContainer">
-        <div class="Training-Heading">
-            <h1>Our Trainers</h1>
-        </div>
+
         <div class="AddTrainerCard">
             <button onclick="showForm()">Add Trainer</button>
         </div>
@@ -56,7 +57,7 @@
                     while ($row = $result->fetch_assoc()) {
                         echo "<a href='TrainerDetails.php'>
                         <div class='card' data-state='" . $row["state"] . "' data-district='" . $row["district"] . "'>
-                            <div class='content'>
+                            <div class='content'  style='position: static;'>
                                 <div class='img'>
                                     <img src='" . $row["image"] . "' alt='" . $row["name"] . "'>
                                 </div>
@@ -78,10 +79,8 @@
                 ?>
             </div>
 
-            <div class="form-popup" id="trainerFormPopup">
-                <form id="trainerForm" class="form-container" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
-                    <button type="button" class="close-btn" onclick="hideForm()">X</button>
-                    <h2>Add New Trainer</h2>
+            <div class="form-popup" id="trainerFormPopup" style="z-index: 1000">
+                <form id="trainerForm" class="form-container" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" <h2>Add New Trainer</h2>
                     <input type="text" name="trainerName" placeholder="Trainer Name" required>
                     <input type="text" name="trainerJob" placeholder="Job Title" required>
                     <select name="state" id="state" required>
@@ -111,6 +110,7 @@
         </div>
 
         <!-- Training Videos Section -->
+        <!-- Training Videos Section -->
         <div class="TrainingVideosSection">
             <h2>Training Videos</h2>
             <div class="video-grid">
@@ -122,6 +122,7 @@
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/xT5zE5oiqoY?si=17K8uORhCfn2J8Z5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
+
     </div>
 
     <script>
@@ -253,4 +254,5 @@
     ?>
     <?php include 'Footer.php'; ?>
 </body>
+
 </html>

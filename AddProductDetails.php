@@ -30,20 +30,20 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     $product = $result->fetch_assoc();
-    $user_profile = json_decode($product['user_profile'], true); // Assuming profile is stored as JSON
+    $user_profile = json_decode($product['user_profile'], true);
 } else {
     die("Product not found.");
 }
 
 // Handle comment submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment'])) {
-    $user_id = 1; // Replace with the actual logged-in user ID
+    $user_id = $_GET['id']; // Replace with the actual logged-in user ID
     $comment = $conn->real_escape_string($_POST['comment']);
     $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
 
     $sql = "INSERT INTO comments (product_id, user_id, comment, rating, created_at) VALUES ($product_id, $user_id, '$comment', $rating, NOW())";
     if ($conn->query($sql) === TRUE) {
-        echo "New comment posted successfully";
+        echo "<script>alert('New comment posted successfully');</script>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

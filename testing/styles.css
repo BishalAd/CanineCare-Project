@@ -4,76 +4,72 @@ body {
   margin: 0;
   padding: 0;
 }
-
-.container {
-  width: 50%;
-  margin: auto;
-  background: #fff;
+.Symptoms-Container {
+  max-width: 800px;
+  margin: 50px auto;
+  background-color: #fff;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 .progress-bar {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
-
 .progress-bar .step {
-  width: 25%;
+  flex: 1;
+  padding: 10px;
   text-align: center;
-  padding: 10px 0;
-  border-bottom: 3px solid #ccc;
+  border-bottom: 2px solid #ddd;
   position: relative;
 }
-
 .progress-bar .step.active {
-  border-bottom: 3px solid #007bff;
+  border-color: #4caf50;
 }
-
+.progress-bar .step::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -50%;
+  width: 100%;
+  height: 2px;
+  background-color: #ddd;
+  z-index: -1;
+}
+.progress-bar .step:last-child::after {
+  display: none;
+}
 .step-content {
   display: none;
 }
-
 .step-content.active {
   display: block;
 }
-
 label {
   display: block;
-  margin: 10px 0 5px;
-  font-weight: bold;
+  margin-bottom: 5px;
 }
-
-input[type="radio"] {
-  margin-right: 10px;
-}
-
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"],
+select,
 textarea {
   width: 100%;
   padding: 10px;
-  margin-top: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
-
-button {
-  background: #007bff;
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4caf50;
   color: #fff;
-  padding: 10px 15px;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px;
 }
-
-button:hover {
-  background: #0056b3;
-}
-
-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-top: 10px;
+.btn:hover {
+  background-color: #45a049;
 }

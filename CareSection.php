@@ -39,7 +39,7 @@
         <div class="feature-item">
             <img src="Resources/DogCare4.png" alt="Clock Icon">
             <p>Consult Vet in 15 minutes</p>
-            <span>Fastest Vet service in India</span>
+            <span>Fastest Vet service in Nepal</span>
         </div>
     </div>
 
@@ -48,24 +48,96 @@
         <h1>Consult Experienced Veterinary Doctors Online</h1>
         <div class="doctor-section">
             <div class="doctor-card">
-                <img src="Resources/Doctor1.jpg" alt="Dr. Pritish Rath">
-                <h2>Dr. Pritish Rath</h2>
-                <p>B.V.Sc. & AH, M.V.Sc. (Gold Medalist)</p>
-                <p>Experienced Veterinary Consultant & Surgeon with expertise in Veterinary Surgery, Radiology, Preventive Care, Nutrition, Wound care management, and Anesthesia monitoring. Expertise in treating canine, feline, avian, and small pets. Member of Indian Veterinary Council. Lifetime Member of the Indian Society of Veterinary Surgery (ISVS).</p>
+                <img src="Resources/Doctor1.jpg" alt="Dr. Pankaj Dhakad">
+                <h2>Dr. Pankaj Dhakad</h2>
+                <p>B.V.Sc. & AH, M.V.Sc.</p>
+                <p>Experienced Veterinary Consultant & Surgeon with expertise in Veterinary Surgery, Radiology, Preventive Care, Nutrition, Wound care management, and Anesthesia monitoring. Expertise in treating canine, feline, avian, and small pets. Member of Nepal Veterinary Council. </p>
             </div>
             <div class="doctor-card">
-                <img src="Resources/Doctor2.jpg" alt="Dr. Prafulla Kumar Mishra">
-                <h2>Dr. Prafulla Kumar Mishra</h2>
-                <p>B.V.Sc. & AH (Gold Medalist)</p>
-                <p>Experienced Veterinary consultant & Surgeon with expertise in treating Pet animals, Farm animals such as Cattle, Equine, Bovine, and Birds. Member of the Indian Veterinary council. Speaks English, Hindi, & Odia.</p>
-            </div>
-            <div class="doctor-card">
-                <img src="Resources/Doctor3.jpg" alt="Dr. Jupaka Shashank">
-                <h2>Dr. Jupaka Shashank</h2>
+                <img src="Resources/Doctor2.jpg" alt="Dr. Jagdish Chaudhary">
+                <h2>Dr. Jagdish Chaudhary</h2>
                 <p>B.V.Sc. & AH</p>
-                <p>Experienced Veterinary Surgeon & Radiologist with expertise in Veterinary surgery, Vaccination, Preventive Care, Dermatology, Radiology, Nutrition, and Soft tissue surgery. Expertise in treating Canine, Feline, Avian, and Small Pets. Member of Indian Veterinary Council.</p>
+                <p>Experienced Veterinary consultant & Surgeon with expertise in treating Pet animals, Farm animals such as Cattle, Equine, Bovine, and Birds. Member of the Nepal Veterinary council. Speaks Neplai, English and Hindi.</p>
+            </div>
+            <div class="doctor-card">
+                <img src="Resources/Doctor3.jpg" alt="Dr. Saheb Kumar">
+                <h2>Dr. Saheb Kumar</h2>
+                <p>B.V.Sc. & AH</p>
+                <p>Experienced Veterinary Surgeon & Radiologist with expertise in Veterinary surgery, Vaccination, Preventive Care, Dermatology, Radiology, Nutrition, and Soft tissue surgery. Expertise in treating Canine, Feline, Avian, and Small Pets. Member of Nepal Veterinary Council.</p>
             </div>
         </div>
+    </div>
+    <div class="Symptoms-Container">
+        <div class="progress-bar">
+            <div class="step active">User Details</div>
+            <div class="step">Pet Details</div>
+            <div class="step">Main Symptom</div>
+            <div class="step">Symptom Details</div>
+            <div class="step">Report</div>
+        </div>
+        <form id="symptomCheckerForm">
+            <div class="step-content active" id="step-1">
+                <h1>Your Details</h1>
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" name="fullName" required><br><br>
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <button type="button" class="btn" onclick="nextStep(2)">Next</button>
+            </div>
+            <div class="step-content" id="step-2">
+                <h1>Pet Details</h1>
+                <h2>What's their sex?</h2>
+                <div>
+                    <input type="radio" id="male" name="sex" value="male" required>
+                    <label for="male">Male</label>
+                </div>
+                <div>
+                    <input type="radio" id="female" name="sex" value="female" required>
+                    <label for="female">Female</label>
+                </div>
+                <h2>What's their Age?</h2>
+                <input type="number" name="age" required><br>
+                <button type="button" class="btn" onclick="prevStep(1)">Back</button>
+                <button type="button" class="btn" onclick="nextStep(3)">Next</button>
+            </div>
+            <div class="step-content" id="step-3">
+                <h2>Main Symptom</h2>
+                <label for="mainSymptom">Select the main symptom</label>
+                <select name="mainSymptom" id="mainSymptom" required>
+                    <option value="coughing">Coughing</option>
+                    <option value="vomiting">Vomiting</option>
+                    <option value="diarrhea">Diarrhea</option>
+                    <option value="lethargy">Lethargy</option>
+                    <option value="itching">Itching</option>
+                    <option value="loss of appetite">Loss of appetite</option>
+                    <option value="excessive thirst">Excessive thirst</option>
+                    <option value="difficulty breathing">Difficulty breathing</option>
+                    <option value="limping">Limping</option>
+                    <option value="ear discharge">Ear discharge</option>
+                    <option value="sneezing">Sneezing</option>
+                    <option value="hair loss">Hair loss</option>
+                    <option value="eye discharge">Eye discharge</option>
+                    <option value="weight loss">Weight loss</option>
+                </select>
+                <button type="button" class="btn" onclick="prevStep(2)">Back</button>
+                <button type="button" class="btn" onclick="nextStep(4)">Next</button>
+            </div>
+            <div class="step-content" id="step-4">
+                <h2>Symptom Details</h2>
+                <label for="symptomDetails">Describe the symptom in more detail</label>
+                <textarea name="symptomDetails" id="symptomDetails" rows="4" cols="50" required></textarea>
+                <button type="button" class="btn" onclick="prevStep(3)">Back</button>
+                <button type="button" class="btn" onclick="generateReport()">Generate Report</button>
+            </div>
+            <div class="step-content" id="step-5">
+                <h2>Report</h2>
+                <p id="reportContent"></p>
+                <button type="button" class="btn" onclick="prevStep(4)">Back</button>
+                <button type="button" class="btn" onclick="printReport()">Print Report</button>
+            </div>
+        </form>
     </div>
 
     <!-- Popup Form -->
@@ -74,7 +146,7 @@
             <span class="popup-close" onclick="closePopup()">&times;</span>
             <div class="consult-form-container">
                 <h1>Consult a Vet Online</h1>
-                <p class="consult-price">₹199.00</p>
+                <p class="consult-price">Rs 499.00</p>
                 <p class="consult-description">Book your schedule for an online vet consultation now! You will be notified about the vet assignment shortly.</p>
 
                 <?php
@@ -96,9 +168,25 @@
                     $date = $_POST['date'];
                     $time = $_POST['time'];
                     $doctor = $_POST['doctor'];
+                    $report = $_POST['report_data'];
 
-                    $sql = "INSERT INTO consultations (name, email, phone, appointment_date, appointment_time, doctor)
-                            VALUES ('$name', '$email', '$phone', '$date', '$time', '$doctor')";
+                    // Check if the appointment time is already booked
+                    $check_sql = "SELECT COUNT(*) AS count FROM consultations WHERE appointment_date = '$date' AND appointment_time = '$time'";
+                    $check_result = $conn->query($check_sql);
+
+                    if ($check_result && $check_result->num_rows > 0) {
+                        $row = $check_result->fetch_assoc();
+                        if ($row['count'] > 0) {
+                            echo "<p class='consult-error'>Appointment time '$time' on '$date' is already booked. Please choose another time.</p>";
+                            exit; // Stop further execution
+                        }
+                    } else {
+                        echo "<p class='consult-error'>Error checking appointment availability.</p>";
+                        exit; // Stop further execution
+                    }
+
+                    $sql = "INSERT INTO consultations (name, email, phone, appointment_date, appointment_time, doctor, report_data)
+                            VALUES ('$name', '$email', '$phone', '$date', '$time', '$doctor', 'report')";
 
                     if ($conn->query($sql) === TRUE) {
                         echo "<p class='consult-success'>Appointment booked successfully!</p>";
@@ -126,11 +214,14 @@
                     <label for="time">Appointment Time:</label>
                     <input type="time" id="time" name="time" required>
 
+                    <label for="report">Upload Your Dog Report:</label>
+                    <input type="file" id="report" name="report" required>
+
                     <label for="doctor">Select Doctor:</label>
                     <select id="doctor" name="doctor" required>
-                        <option value="Dr. Smith">Dr. Smith</option>
-                        <option value="Dr. Johnson">Dr. Johnson</option>
-                        <option value="Dr. Brown">Dr. Brown</option>
+                        <option value="Dr. Smith">Dr. Pankaj Dhakad</option>
+                        <option value="Dr. Johnson">Dr. Saheb Kumar</option>
+                        <option value="Dr. Brown">Dr. Jagdish Chaudhary</option>
                     </select>
 
                     <button type="button" onclick="showPaymentPopup()">Proceed to Payment</button>
@@ -139,90 +230,31 @@
         </div>
     </div>
 
+
     <!-- Payment Popup Form -->
-<div id="paymentPopupForm" class="popup-form">
-    <div class="popup-content">
-        <span class="popup-close" onclick="closePaymentPopup()">&times;</span>
-        <div class="payment-container">
-            <h2>Choose Payment Method</h2>
-            <button id="khalti-payment-button">Pay with Khalti</button>
-            <form id="esewa-form" action="https://uat.esewa.com.np/epay/main" method="POST">
-                <input value="199" name="tAmt" type="hidden">
-                <input value="199" name="amt" type="hidden">
-                <input value="0" name="txAmt" type="hidden">
-                <input value="0" name="psc" type="hidden">
-                <input value="0" name="pdc" type="hidden">
-                <input value="YOUR_ESEWA_MERCHANT_ID" name="scd" type="hidden">
-                <input value="YOUR_INVOICE_NUMBER" name="pid" type="hidden">
-                <input value="payment_success.php" type="hidden" name="su">
-                <input value="payment_failure.php" type="hidden" name="fu">
-                <button type="submit">Pay with eSewa</button>
-            </form>
+    <div id="paymentPopupForm" class="popup-form">
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePaymentPopup()">&times;</span>
+            <div class="payment-container">
+                <h2>Choose Payment Method</h2>
+                <button id="khalti-payment-button">Pay with Khalti</button>
+                <form id="esewa-form" action="https://uat.esewa.com.np/epay/main" method="POST">
+                    <input value="499" name="tAmt" type="hidden">
+                    <input value="499" name="amt" type="hidden">
+                    <input value="0" name="txAmt" type="hidden">
+                    <input value="0" name="psc" type="hidden">
+                    <input value="0" name="pdc" type="hidden">
+                    <input value="YOUR_ESEWA_MERCHANT_ID" name="scd" type="hidden">
+                    <input value="YOUR_INVOICE_NUMBER" name="pid" type="hidden">
+                    <input value="payment_success.php" type="hidden" name="su">
+                    <input value="payment_failure.php" type="hidden" name="fu">
+                    <button type="submit">Pay with eSewa</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<script src="https://khalti.com/static/khalti-checkout.js"></script>
-<script>
-    var config = {
-        publicKey: "test_public_key_d7636da7c54a41e0af3f6f1689e2d85e",
-        productIdentity: "1234567890",
-        productName: "Canine Care Service",
-        productUrl: "http://bishaladhikari7.com.np",
-        eventHandler: {
-            onSuccess(payload) {
-                var form = document.createElement('form');
-                form.method = 'POST';
-                form.action = 'payment_success.php';
-                form.innerHTML = '<input type="hidden" name="payment_token" value="' + payload.token + '">' +
-                    '<input type="hidden" name="amount" value="' + payload.amount + '">' +
-                    '<input type="hidden" name="payment_method" value="khalti">';
-                document.body.appendChild(form);
-                form.submit();
-            },
-            onError(error) {
-                console.log(error);
-            },
-            onClose() {
-                console.log('Widget is closing');
-            }
-        }
-    };
-    var checkout = new KhaltiCheckout(config);
-    var btn = document.getElementById("khalti-payment-button");
-    btn.onclick = function() {
-        checkout.show({
-            amount: 19900
-        });
-    }
-</script>
-
-<script>
-    function showPaymentPopup() {
-        document.getElementById("paymentPopupForm").style.display = "block";
-    }
-
-    function closePaymentPopup() {
-        document.getElementById("paymentPopupForm").style.display = "none";
-    }
-</script>
-
-    <script>
-        function openPopup() {
-            document.getElementById("popupForm").style.display = "block";
-        }
-
-        function closePopup() {
-            document.getElementById("popupForm").style.display = "none";
-        }
-
-        function showPaymentPopup() {
-            document.getElementById("paymentPopupForm").style.display = "block";
-        }
-
-        function closePaymentPopup() {
-            document.getElementById("paymentPopupForm").style.display = "none";
-        }
-    </script>
+    <script src="https://khalti.com/static/khalti-checkout.js"></script>
+    <script src="CareSection.js"></script>
     <?php include  'Footer.php' ?>
     <script src="script.js"></script>
 </body>
