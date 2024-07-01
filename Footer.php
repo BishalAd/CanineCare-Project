@@ -40,29 +40,35 @@
           <h3>Follow Us</h3>
           <ul class="wrapper">
             <li class="icon facebook">
-              <span class="tooltip">Facebook</span>
-              <span><i class="fab fa-facebook-f"></i></span>
+              <a href="https://www.facebook.com/canineecare/" target="_blank">
+                <span class="tooltip">Facebook</span>
+                <span><i class="fab fa-facebook-f"></i></span>
+              </a>
             </li>
             <li class="icon instagram">
-              <span class="tooltip">Instagram</span>
-              <span><i class="fab fa-instagram"></i></span>
+              <a href="https://www.instagram.com/canineecare/" target="_blank">
+                <span class="tooltip">Instagram</span>
+                <span><i class="fab fa-instagram"></i></span>
+              </a>
             </li>
             <li class="icon youtube">
-              <span class="tooltip">Youtube</span>
-              <span><i class="fab fa-youtube"></i></span>
+              <a href="" target="_blank">
+                <span class="tooltip">Youtube</span>
+                <span><i class="fab fa-youtube"></i></span>
+              </a>
             </li>
           </ul>
         </div>
         <div class="donate-img footer-col">
           <a href="https://www.hartnepal.org/" target="_blank">
-          <img src="Resources/Donate.png" alt="Donate on this number : 984-6531069">
+            <img src="Resources/Donate.png" alt="Donate on this number : 984-6531069">
           </a>
         </div>
       </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2024 Canine Care. All Rights Reserved.</p>
-      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Canine Care. All Rights Reserved.</p>
+    </div>
   </footer>
 </body>
 

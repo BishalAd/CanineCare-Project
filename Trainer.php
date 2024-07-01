@@ -12,12 +12,14 @@
 <body>
     <?php include 'nav.php'; ?>
     <div class="Training-Heading">
-        <h1 style="margin-top: 55px;">Our Trainers</h1>
+        <h2 style="margin-top: 80px;">Our Trainers</h2>
     </div>
     <div class="TrainerContainer">
 
         <div class="AddTrainerCard">
-            <button onclick="showForm()">Add Trainer</button>
+            <?php if (isset($_SESSION['id'])) { ?>
+                <button onclick="showForm()">Add Trainer</button>
+            <?php } ?>
         </div>
         <div class="filter-section">
             <select name="state" class="filter-Input-box" id="filterState" onchange="populateDistricts('filterState', 'filterDistrict')">
@@ -55,7 +57,7 @@
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<a href='TrainerDetails.php'>
+                        echo "
                         <div class='card' data-state='" . $row["state"] . "' data-district='" . $row["district"] . "'>
                             <div class='content'  style='position: static;'>
                                 <div class='img'>
@@ -72,18 +74,20 @@
                                     <a href='" . $row["youtube"] . "' target='_blank'><i class='fab fa-youtube'></i></a>
                                 </div>
                             </div>
-                          </div></a>";
+                          </div>";
                     }
                 }
                 $conn->close();
                 ?>
             </div>
 
-            <div class="form-popup" id="trainerFormPopup" style="z-index: 1000">
-                <form id="trainerForm" class="form-container" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" <h2>Add New Trainer</h2>
+            <div class="form-popup" id="trainerFormPopup" style="display:none;">
+                <button type="button" class="close-btn" onclick="hideForm()">X</button>
+                <form id="trainerForm" class="form-container" method="post" action="" enctype="multipart/form-data">
+                    <h2>Add New Trainer</h2>
                     <input type="text" name="trainerName" placeholder="Trainer Name" required>
                     <input type="text" name="trainerJob" placeholder="Job Title" required>
-                    <select name="state" id="state" required>
+                    <select name="state" id="state" onchange="populateDistricts('state', 'district')" required>
                         <option value="" disabled selected>Select State</option>
                         <option value="Province 1">Province 1</option>
                         <option value="Province 2">Province 2</option>
@@ -97,6 +101,10 @@
                         <option value="" disabled selected>Select District</option>
                         <!-- District options will be populated based on state selection -->
                     </select>
+                    <input type="email" name="trainerEmail" placeholder="Email" required>
+                    <input type="tel" name="trainerPhone" placeholder="Phone Number" required>
+                    <input type="text" name="trainerAddress" placeholder="Address" required>
+                    <input type="number" name="trainerExperience" placeholder="Years of Experience" required>
                     <input type="file" name="profile" id="profile" required><br>
                     <input type="url" name="trainerFacebook" placeholder="Facebook URL">
                     <input type="url" name="trainerTwitter" placeholder="Twitter URL">
@@ -110,9 +118,8 @@
         </div>
 
         <!-- Training Videos Section -->
-        <!-- Training Videos Section -->
         <div class="TrainingVideosSection">
-            <h2>Training Videos</h2>
+            <h1>Training Videos</h1>
             <div class="video-grid">
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/Zt31jNGAKz4?si=kmm7--uGorMJ-cuz" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/psemvgmsI3Y?si=lxJjCraCw0GZAnNt" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -125,23 +132,66 @@
 
     </div>
 
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "caninecare_db";
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $name = $_POST['trainerName'];
+        $job = $_POST['trainerJob'];
+        $state = $_POST['state'];
+        $district = $_POST['district'];
+        $email = $_POST['trainerEmail'];
+        $phone = $_POST['trainerPhone'];
+        $address = $_POST['trainerAddress'];
+        $experience = $_POST['trainerExperience'];
+        $facebook = $_POST['trainerFacebook'];
+        $twitter = $_POST['trainerTwitter'];
+        $instagram = $_POST['trainerInstagram'];
+        $youtube = $_POST['trainerYouTube'];
+        $description = $_POST['trainerDescription'];
+
+        $profile_image = $_FILES['profile']['name'];
+        $profile_image_temp = $_FILES['profile']['tmp_name'];
+        move_uploaded_file($profile_image_temp, "trainers_img/$profile_image");
+
+        $experience_document = $_FILES['experienceDocument']['name'];
+        $experience_document_temp = $_FILES['experienceDocument']['tmp_name'];
+        move_uploaded_file($experience_document_temp, "trainers_img/$experience_document");
+
+        $sql = "INSERT INTO trainers (name, job, state, district, email, phone, address, experience, facebook, twitter, instagram, youtube, description, image, experience_document) 
+                VALUES ('$name', '$job', '$state', '$district', '$email', '$phone', '$address', '$experience', '$facebook', '$twitter', '$instagram', '$youtube', '$description', '$profile_image', '$experience_document')";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "<script>alert('New trainer added successfully');</script>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+        $conn->close();
+        echo "<script>window.location.href='trainers.php';</script>";
+    }
+    ?>
+
     <script>
-        function showForm() {
-            document.getElementById("trainerFormPopup").style.display = "block";
-        }
-
-        function hideForm() {
-            document.getElementById("trainerFormPopup").style.display = "none";
-        }
-
         const statesAndDistricts = {
-            "Province 1": ["District 1.1", "District 1.2"],
-            "Province 2": ["District 2.1", "District 2.2"],
-            "Bagmati": ["District 3.1", "District 3.2"],
-            "Gandaki": ["District 4.1", "District 4.2"],
-            "Lumbini": ["District 5.1", "District 5.2"],
-            "Karnali": ["District 6.1", "District 6.2"],
-            "Sudurpashchim": ["District 7.1", "District 7.2"]
+            'Province 1': ['Bhojpur', 'Dhankuta', 'Ilam', 'Jhapa', 'Khotang', 'Morang', 'Okhaldhunga', 'Panchthar', 'Sankhuwasabha', 'Solukhumbu', 'Sunsari', 'Taplejung', 'Terhathum', 'Udayapur'],
+            'Province 2': ['Bara', 'Dhanusha', 'Mahottari', 'Parsa', 'Rautahat', 'Saptari', 'Sarlahi', 'Siraha'],
+            'Bagmati': ['Bhaktapur', 'Chitwan', 'Dhading', 'Dolakha', 'Kathmandu', 'Kavrepalanchok', 'Lalitpur', 'Makwanpur', 'Nuwakot', 'Ramechhap', 'Rasuwa', 'Sindhuli', 'Sindhupalchok'],
+            'Gandaki': ['Baglung', 'Gorkha', 'Kaski', 'Lamjung', 'Manang', 'Mustang', 'Myagdi', 'Nawalpur', 'Parbat', 'Syangja', 'Tanahun'],
+            'Lumbini': ['Arghakhanchi', 'Banke', 'Bardiya', 'Dang', 'Gulmi', 'Kapilvastu', 'Parasi', 'Palpa', 'Pyuthan', 'Rolpa', 'Rukum', 'Rupandehi'],
+            'Karnali': ['Dailekh', 'Dolpa', 'Humla', 'Jajarkot', 'Jumla', 'Kalikot', 'Mugu', 'Rukum', 'Salyan', 'Surkhet'],
+            'Sudurpashchim': ['Achham', 'Baitadi', 'Bajhang', 'Bajura', 'Dadeldhura', 'Darchula', 'Doti', 'Kailali', 'Kanchanpur']
         };
 
         function populateDistricts(stateSelectId, districtSelectId) {
@@ -149,7 +199,7 @@
             const districtSelect = document.getElementById(districtSelectId);
             const selectedState = stateSelect.value;
 
-            districtSelect.innerHTML = "<option value=''>Select District</option>";
+            districtSelect.innerHTML = "<option value='' disabled selected>Select District</option>";
             if (statesAndDistricts[selectedState]) {
                 statesAndDistricts[selectedState].forEach(district => {
                     const option = document.createElement("option");
@@ -178,6 +228,14 @@
             });
         }
 
+        function showForm() {
+            document.getElementById("trainerFormPopup").style.display = "block";
+        }
+
+        function hideForm() {
+            document.getElementById("trainerFormPopup").style.display = "none";
+        }
+
         document.getElementById("trainerForm").addEventListener("submit", function(event) {
             if (event.submitter.className !== 'close-btn') {
                 event.preventDefault();
@@ -186,73 +244,6 @@
             }
         });
     </script>
-
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "caninecare_db";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $name = $_POST['trainerName'];
-        $job = $_POST['trainerJob'];
-        $state = $_POST['state'];
-        $district = $_POST['district'];
-        $facebook = $_POST['trainerFacebook'];
-        $twitter = $_POST['trainerTwitter'];
-        $instagram = $_POST['trainerInstagram'];
-        $youtube = $_POST['trainerYouTube'];
-        $description = $_POST['trainerDescription'];
-
-        // File upload handling for profile image
-        if (isset($_FILES['profile']) && $_FILES['profile']['error'] == 0) {
-            $file_name = $_FILES['profile']['name'];
-            $file_tmp = $_FILES['profile']['tmp_name'];
-            $upload_dir = "uploads/";
-            if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
-            move_uploaded_file($file_tmp, $upload_dir . $file_name);
-            $image = $upload_dir . $file_name;
-        } else {
-            $image = "";
-        }
-
-        // File upload handling for experience document
-        if (isset($_FILES['experienceDocument']) && $_FILES['experienceDocument']['error'] == 0) {
-            $file_name = $_FILES['experienceDocument']['name'];
-            $file_tmp = $_FILES['experienceDocument']['tmp_name'];
-            $upload_dir = "uploads/documents/";
-            if (!is_dir($upload_dir)) {
-                mkdir($upload_dir, 0777, true);
-            }
-            move_uploaded_file($file_tmp, $upload_dir . $file_name);
-            $experienceDocument = $upload_dir . $file_name;
-        } else {
-            $experienceDocument = "";
-        }
-
-        $sql = "INSERT INTO trainers (name, job, state, district, image, facebook, twitter, instagram, youtube, description, experienceDocument) 
-                VALUES ('$name', '$job', '$state', '$district', '$image', '$facebook', '$twitter', '$instagram', '$youtube', '$description', '$experienceDocument')";
-
-        if ($conn->query($sql) === TRUE) {
-            echo "<script>alert('New trainer added successfully'); window.location.href = window.location.href;</script>";
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-
-        $conn->close();
-    }
-    ?>
-    <?php include 'Footer.php'; ?>
 </body>
 
 </html>

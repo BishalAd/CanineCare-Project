@@ -103,30 +103,37 @@
                 <div class="carousel owl-carousel">
                     <div class="card">
                         <div class="box">
+                            <img src="zoro.jpg" alt="">
+                            <div class="text">Ashish Gurung</div>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="box">
+                            <img src="sanji.jpg" alt="My Profile Image">
+                            <div class="text">Himal Thapa</div>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="box">
+                            <img src="ussop.jpg" alt="">
+                            <div class="text">Rabindra Poudel</div>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="box">
                             <img src="image1.jpg" alt="">
                             <div class="text">Bishal Adhikari</div>
-                            <p>is a Front-End Developer</p>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                         </div>
                     </div>
                     <div class="card">
                         <div class="box">
-                            <img src="himal.jpg" alt="My Profile Image">
-                            <div class="text">Himal Thapa</div>
-                            <p>is a Back-End Developer</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="Aayushka.jpg" alt="">
-                            <div class="text">Aayushka GC</div>
-                            <p>is a Project Manager</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="ashis.jpg" alt="">
-                            <div class="text">Ashish Gurung</div>
-                            <p>is a Quality Assurance (QA) Tester</p>
+                            <img src="franky.jpg" alt="">
+                            <div class="text">Abhishek Hamal</div>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                         </div>
                     </div>
                 </div>
@@ -137,6 +144,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-KyZXEAg3QhqLMpG8r+8fhAXLRw0smIOmwV8AY5poTwja57f0SQY7gGQtsEkF+3eU0P6mTpoXf7znkXwQYoAhhQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-tS3n7VFL9WqF3GBFb9Y2O5iVrcOVsZXB2IDTxN1Lz8x0CRR5XBlU6u9e3M0MysD2XnqStmduDAET2P2P5TICsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="scripts.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.carousel').owlCarousel({
+                margin: 20,
+                loop: true,
+                autoplay: true,
+                autoplayTimeOut: 2000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    600: {
+                        items: 2,
+                        nav: false
+                    },
+                    1000: {
+                        items: 3,
+                        nav: false
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

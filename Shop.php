@@ -49,109 +49,110 @@ if (isset($_POST['add_to_cart'])) {
 </head>
 
 <body>
-<?php include 'nav.php' ?>
-<main class="Product-list">
-    <div class="heroSection">
-        <video autoplay muted loop id="video-background">
-            <source src="Resources/Video2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="black-overlay"></div>
-        <div class="content">
-            <p>Welcome to </p>
-            <h1>CanineCare!</h1>
-            <p>Your pet's health and <br>wellbeing is our top priority.</p>
+    <?php include 'nav.php' ?>
+    <main class="Product-list">
+        <div class="heroSection">
+            <video autoplay muted loop id="video-background">
+                <source src="Resources/Video2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="black-overlay"></div>
+            <div class="content">
+                <p>Welcome to </p>
+                <h1>CanineCare!</h1>
+                <p>Your pet's health and <br>wellbeing is our top priority.</p>
+            </div>
         </div>
+
+        <?php
+        // Check if user is logged in and is a business account
+        if (!isset($_SESSION['id']) || (isset($_SESSION['role']) && $_SESSION['role'] != 'business')) {
+            $hideButton = true;
+        } else {
+            $hideButton = false;
+        }
+
+        if (!$hideButton) :
+            echo '<a href="AddProduct.php" class="AddProductBtn"><button>Add Product</button></a>';
+        endif;
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "caninecare_db";
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
+
+        echo '<form method="GET" id="filter-form">';
+        echo '<label for="filter">Filter by category:</label>';
+        echo '<select name="filter" id="filter" onchange="document.getElementById(\'filter-form\').submit();">';
+        echo '<option value="all"' . ($filter == 'all' ? ' selected' : '') . '>All</option>';
+        echo '<option value="food"' . ($filter == 'food' ? ' selected' : '') . '>Food</option>';
+        echo '<option value="accessories"' . ($filter == 'accessories' ? ' selected' : '') . '>Accessories</option>';
+        echo '<option value="health"' . ($filter == 'health' ? ' selected' : '') . '>Health</option>';
+        echo '<option value="toy"' . ($filter == 'toy' ? ' selected' : '') . '>Toy</option>';
+        echo '</select>';
+        echo '</form>';
+
+        echo '<div id="products">';
+        $sql = "SELECT * FROM product WHERE hidden=0";
+        if ($filter == 'food') {
+            $sql .= " AND category = 'food'";
+        } elseif ($filter == 'accessories') {
+            $sql .= " AND category = 'accessories'";
+        } elseif ($filter == 'health') {
+            $sql .= " AND category = 'health'";
+        } elseif ($filter == 'toy') {
+            $sql .= " AND category = 'toy'";
+        }
+        $result = $conn->query($sql);
+
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $product_id = $row['product_id'];
+                $name = $row['name'];
+                $price = $row['price'];
+                $img1 = $row['img1'];
+                $description = $row['description'];
+
+                echo '    <a class="BoxCover" href="AddProductDetails.php?id=' . $product_id . '">';
+                echo '<div class="box">';
+                echo '    <div class="imgbox">';
+                echo '        <img src="Product_Img_uploads/' . $img1 . '" alt="' . htmlspecialchars($name) . '" class="product-img">';
+                echo '    </div>';
+                echo '    <h2 class="product-title">' . htmlspecialchars($name) . '</h2><br>';
+                echo '    <span class="price">RS ' . htmlspecialchars($price) . '</span>';
+                echo '    <form action="shop.php" method="post">';
+                echo '        <input type="hidden" name="product_id" value="' . $product_id . '">';
+                echo '        <input type="hidden" name="name" value="' . htmlspecialchars($name) . '">';
+                echo '        <input type="hidden" name="price" value="' . htmlspecialchars($price) . '">';
+                echo '        <input type="hidden" name="img1" value="' . htmlspecialchars($img1) . '">';
+                echo '        <button type="submit" name="add_to_cart" class="add-cart">Add to cart</button>';
+                echo '    </form>';
+                echo '        <button class="view-details">View Details</button>';
+                echo '</div>';
+                echo '</a>';
+            }
+        } else {
+            echo '<span class="NoProductFoundMsg">No products found.</span>';
+        }
+        echo '</div>';
+
+        $conn->close();
+        ?>
+    </main>
+    <div class="footerSection">
+        <?php include  'Footer.php' ?>
     </div>
 
-    <?php
-    // Check if user is logged in and is a business account
-    if (!isset($_SESSION['id']) || (isset($_SESSION['role']) && $_SESSION['role'] != 'business')) {
-        $hideButton = true;
-    } else {
-        $hideButton = false;
-    }
-
-    if (!$hideButton):
-        echo '<a href="AddProduct.php" class="AddProductBtn"><button>Add Product</button></a>';
-    endif;
-
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "caninecare_db";
-
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $filter = isset($_GET['filter']) ? $_GET['filter'] : 'all';
-
-    echo '<form method="GET" id="filter-form">';
-    echo '<label for="filter">Filter by category:</label>';
-    echo '<select name="filter" id="filter" onchange="document.getElementById(\'filter-form\').submit();">';
-    echo '<option value="all"'.($filter == 'all' ? ' selected' : '').'>All</option>';
-    echo '<option value="food"'.($filter == 'food' ? ' selected' : '').'>Food</option>';
-    echo '<option value="accessories"'.($filter == 'accessories' ? ' selected' : '').'>Accessories</option>';
-    echo '<option value="health"'.($filter == 'health' ? ' selected' : '').'>Health</option>';
-    echo '<option value="toy"'.($filter == 'toy' ? ' selected' : '').'>Toy</option>';
-    echo '</select>';
-    echo '</form>';
-
-    echo '<div id="products">';
-    $sql = "SELECT * FROM product WHERE hidden=0";
-    if ($filter == 'food') {
-        $sql .= " WHERE category = 'food'";
-    } elseif ($filter == 'accessories') {
-        $sql .= " WHERE category = 'accessories'";
-    } elseif ($filter == 'health') {
-        $sql .= " WHERE category = 'health'";
-    } elseif ($filter == 'toy') {
-        $sql .= " WHERE category = 'toy'";
-    }
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $product_id = $row['product_id'];
-            $name = $row['name'];
-            $price = $row['price'];
-            $img1 = $row['img1'];
-            $description = $row['description'];
-
-            echo '    <a class="BoxCover" href="AddProductDetails.php?id=' . $product_id . '">';
-            echo '<div class="box">';
-            echo '    <div class="imgbox">';
-            echo '        <img src="Product_Img_uploads/' . $img1 . '" alt="' . htmlspecialchars($name) . '" class="product-img">';
-            echo '    </div>';
-            echo '    <h2 class="product-title">' . htmlspecialchars($name) . '</h2><br>';
-            echo '    <span class="price">RS ' . htmlspecialchars($price) . '</span>';
-            echo '    <form action="shop.php" method="post">';
-            echo '        <input type="hidden" name="product_id" value="' . $product_id . '">';
-            echo '        <input type="hidden" name="name" value="' . htmlspecialchars($name) . '">';
-            echo '        <input type="hidden" name="price" value="' . htmlspecialchars($price) . '">';
-            echo '        <input type="hidden" name="img1" value="' . htmlspecialchars($img1) . '">';
-            echo '        <button type="submit" name="add_to_cart" class="add-cart">Add to cart</button>';
-            echo '    </form>';
-            echo '        <button class="view-details">View Details</button>';
-            echo '</div>';
-            echo '</a>';
-        }
-    } else {
-        echo '<span class="NoProductFoundMsg">No products found.</span>';
-    }
-    echo '</div>';
-
-    $conn->close();
-    ?>
-</main>
-<div class="footerSection">
-    <?php include  'Footer.php' ?>
-</div>
-
-<script src="script.js"></script>
-<script>
+    <script src="script.js"></script>
+    <script>
         // Get all add to cart buttons
         const addToCartButtons = document.querySelectorAll('.add-to-cart');
 
@@ -175,6 +176,3 @@ if (isset($_POST['add_to_cart'])) {
 </body>
 
 </html>
-
-
-
