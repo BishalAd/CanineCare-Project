@@ -1,6 +1,5 @@
 <?php
 // shop.php
-
 session_start();
 
 if (isset($_POST['add_to_cart'])) {
@@ -158,11 +157,8 @@ if (isset($_POST['add_to_cart'])) {
 
         // Function to handle add to cart button click
         function handleAddToCartClick(event) {
-            // Check if user is logged in
             <?php if (!isset($_SESSION['id'])) : ?>
-                // If not logged in, show confirmation dialog
                 if (!confirm("Please log in first to add items to the cart. Do you want to log in now?")) {
-                    // If user cancels, prevent default action (adding to cart)
                     event.preventDefault();
                 }
             <?php endif; ?>

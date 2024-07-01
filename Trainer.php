@@ -58,23 +58,25 @@
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "
-                        <div class='card' data-state='" . $row["state"] . "' data-district='" . $row["district"] . "'>
-                            <div class='content'  style='position: static;'>
-                                <div class='img'>
-                                    <img src='" . $row["image"] . "' alt='" . $row["name"] . "'>
-                                </div>
-                                <div class='details'>
-                                    <div class='name'>" . $row["name"] . "</div>
-                                    <div class='job'>" . $row["job"] . "</div>
-                                </div>
-                                <div class='media-icons'>
-                                    <a href='" . $row["facebook"] . "' target='_blank'><i class='fab fa-facebook-f'></i></a>
-                                    <a href='" . $row["twitter"] . "' target='_blank'><i class='fab fa-twitter'></i></a>
-                                    <a href='" . $row["instagram"] . "' target='_blank'><i class='fab fa-instagram'></i></a>
-                                    <a href='" . $row["youtube"] . "' target='_blank'><i class='fab fa-youtube'></i></a>
-                                </div>
-                            </div>
-                          </div>";
+        <a href='TrainerDetails.php?trainer_id=" . $row["trainer_id"] . "'>
+        <div class='card' data-state='" . $row["state"] . "' data-district='" . $row["district"] . "'>
+            <div class='content'  style='position: static;'>
+                <div class='img'>
+                    <img src='trainers_img/" . $row["image"] . "' alt='" . $row["name"] . "'>
+                </div>
+                <div class='details'>
+                    <div class='name'>" . $row["name"] . "</div>
+                    <div class='training_center_name'>" . $row["training_center_name"] . "</div>
+                </div>
+                <div class='media-icons'>
+                    <a href='" . $row["facebook"] . "' target='_blank'><i class='fab fa-facebook-f'></i></a>
+                    <a href='" . $row["twitter"] . "' target='_blank'><i class='fab fa-twitter'></i></a>
+                    <a href='" . $row["instagram"] . "' target='_blank'><i class='fab fa-instagram'></i></a>
+                    <a href='" . $row["youtube"] . "' target='_blank'><i class='fab fa-youtube'></i></a>
+                </div>
+            </div>
+          </div>
+          </a>";
                     }
                 }
                 $conn->close();
@@ -86,7 +88,7 @@
                 <form id="trainerForm" class="form-container" method="post" action="" enctype="multipart/form-data">
                     <h2>Add New Trainer</h2>
                     <input type="text" name="trainerName" placeholder="Trainer Name" required>
-                    <input type="text" name="trainerJob" placeholder="Job Title" required>
+                    <input type="text" name="training_center_name" placeholder="Training Center Name" required>
                     <select name="state" id="state" onchange="populateDistricts('state', 'district')" required>
                         <option value="" disabled selected>Select State</option>
                         <option value="Province 1">Province 1</option>
@@ -148,7 +150,7 @@
         }
 
         $name = $_POST['trainerName'];
-        $job = $_POST['trainerJob'];
+        $training_center_name = $_POST['training_center_name'];
         $state = $_POST['state'];
         $district = $_POST['district'];
         $email = $_POST['trainerEmail'];
@@ -169,8 +171,8 @@
         $experience_document_temp = $_FILES['experienceDocument']['tmp_name'];
         move_uploaded_file($experience_document_temp, "trainers_img/$experience_document");
 
-        $sql = "INSERT INTO trainers (name, job, state, district, email, phone, address, experience, facebook, twitter, instagram, youtube, description, image, experience_document) 
-                VALUES ('$name', '$job', '$state', '$district', '$email', '$phone', '$address', '$experience', '$facebook', '$twitter', '$instagram', '$youtube', '$description', '$profile_image', '$experience_document')";
+        $sql = "INSERT INTO trainers (name, training_center_name, state, district, email, phone, address, experience, facebook, twitter, instagram, youtube, description, image, experience_document) 
+                VALUES ('$name', '$training_center_name', '$state', '$district', '$email', '$phone', '$address', '$experience', '$facebook', '$twitter', '$instagram', '$youtube', '$description', '$profile_image', '$experience_document')";
 
         if ($conn->query($sql) === TRUE) {
             echo "<script>alert('New trainer added successfully');</script>";

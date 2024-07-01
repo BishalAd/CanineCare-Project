@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    width: 100%;
+}
+
+.profile-container {
+    /* pad: 150px; */
+    width: 100%;
+    margin: 50px auto;
+    background: linear-gradient(45deg, #6fb1fc, #4364f7, #0052d4);
+    color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    /* position: relative; */
+    overflow-y: auto;
+    height: calc(100vh - 100px);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+    margin: 100px 5% 15px 15%;
+}
+
+.profile-header img {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-right: 80px;
+}
+
+.profile-header h2 {
+    margin: 0;
+    color: #ffd700;
+    font-size: 40px;
+}
+
+.profile-header p {
+    margin: 0;
+    color: #fff;
+    font-size: 25px;
+}
+
+.profile-body {
+    line-height: 2.5;
+    font-size: 25px;
+    color: #fff;
+    margin: 0px 0px 10px 15%;
+
+}
+
+.profile-body p i {
+    margin-right: 5px;
+}
+
+.social-links a {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #ffd700;
+    font-weight: 600;
+}
+
+.social-links a i {
+    margin-right: 25px;
+    font-size: 35px;
+}
+
+.social-links a:hover {
+    color: #ff0000a4;
+}
+
+.price-range {
+    margin: 20px 0;
+}
+
+.booking-form {
+    background: #fff;
+    color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 15% 10px 15%;
+
+}
+
+.booking-form h2 {
+    margin-top: 0;
+    text-align: center;
+    margin: 30px;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form textarea {
+    width: 90%;
+    padding: 10px;
+    margin: 5px 0 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.booking-form button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.booking-form button:hover {
+    background-color: #eda33b;
+}

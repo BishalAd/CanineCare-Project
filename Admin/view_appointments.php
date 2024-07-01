@@ -6,7 +6,7 @@ if (!isset($_SESSION['admin'])) {
 }
 
 include('config.php');
-$query = "SELECT * FROM appointments";
+$query = "SELECT * FROM consultations";
 $result = mysqli_query($conn, $query);
 ?>
 
@@ -17,17 +17,7 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Admin Dashboard</h2>
-        <ul>
-            <li><a href="dashboard.php">Home</a></li>
-            <li><a href="view_users.php">View All Users</a></li>
-            <li><a href="view_dogs.php">View All Dogs</a></li>
-            <li><a href="view_products.php">View All Products</a></li>
-            <li><a href="view_trainers.php">View All Trainers</a></li>
-            <li><a href="view_appointments.php">View All Doctor Appointments</a></li>
-        </ul>
-    </div>
+    <?php include('AdminNav.php') ?>
     <div class="content">
         <h1>View Doctor Appointments</h1>
         <table>

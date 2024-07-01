@@ -94,8 +94,8 @@ main {
   margin-right: 10%;
 }
 
-.product-Description{
-    margin-top: 20px;
+.product-Description {
+  margin-top: 20px;
 }
 
 .carousel {
@@ -235,13 +235,13 @@ main {
   align-items: flex-start;
 }
 
-.you-may-also-like h2{
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    color: #333;
-    border-bottom: 2px solid #ccc;
-    padding-bottom: 10px;
-    text-align: center;
+.you-may-also-like h2 {
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 .PostInfo i {
@@ -250,107 +250,106 @@ main {
   font-size: 1.2em;
 }
 .comments-section {
-    margin: 80px 10%;
-    font-family: Arial, sans-serif;
-    align-items: center;
-
+  margin: 80px 10%;
+  font-family: Arial, sans-serif;
+  align-items: center;
 }
 
 .comments-section h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 
 .comment-form {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
 .comment-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 .comment-form button {
-    width: 150px;
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  width: 150px;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .comment-form button:hover {
-    background-color: #218838;
+  background-color: #218838;
 }
 
 .comment-list {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .comment {
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    background-color: #f9f9f9;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
 }
 
 .comment .comment-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
 }
 
 .comment .comment-header span {
-    font-weight: bold;
-    font-size: 14px;
+  font-weight: bold;
+  font-size: 14px;
 }
 
 .comment .comment-body {
-    margin-top: 10px;
-    font-size: 14px;
+  margin-top: 10px;
+  font-size: 14px;
 }
 
 .star-rating {
-    direction: rtl;
-    display: inline-block;
-    padding: 10px;
+  direction: rtl;
+  display: inline-block;
+  padding: 10px;
 }
 
 .star-rating input {
-    display: none;
+  display: none;
 }
 
 .star-rating label {
-    color: #ddd;
-    font-size: 24px;
-    padding: 0;
-    cursor: pointer;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
+  color: #ddd;
+  font-size: 24px;
+  padding: 0;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .star-rating input:checked ~ label,
 .star-rating label:hover,
 .star-rating label:hover ~ label {
-    color: #fd4;
+  color: #fd4;
 }
 
 .star-rating input:checked + label:hover,
 .star-rating input:checked ~ label:hover,
 .star-rating label:hover ~ input:checked ~ label,
 .star-rating input:checked ~ label:hover ~ label {
-    color: #ffed85;
+  color: #ffed85;
 }
 
 .star-rating label:before {
-    content: "\2605";
+  content: "\2605";
 }
 .similar-product {
   /* padding: 15px; */
@@ -359,6 +358,19 @@ main {
   gap: 30px;
 }
 
-.lastPart{
-    margin: 50px 3%;
+.lastPart {
+  margin: 50px 3%;
+}
+
+.edit-button,
+.delete-button {
+  font-size: 15px;
+  border: 2px solid black;
+ padding: 10px 15px;
+ margin-top: 20px;
+  color: white;
+  background-color: black;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s, background-color 0.3s, border-color 0.3s;
 }

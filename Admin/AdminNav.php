@@ -17,6 +17,7 @@ if (!isset($_SESSION['admin'])) {
         <li><a href="view_dogs.php">View All Dogs</a></li>
         <li><a href="view_products.php">View All Products</a></li>
         <li><a href="view_trainers.php">View All Trainers</a></li>
+        <li><a href="view_trainer_booking.php">View All Trainer Booking</a></li>
         <li><a href="view_appointments.php">View All Doctor Appointments</a></li>
     </ul>
 </div>

@@ -20,7 +20,7 @@ if ($product_id <= 0) {
 
 // SQL query to retrieve product data along with user data
 $sql = "
-    SELECT p.*, u.FullName as user_fullname, u.email as user_email, u.profileImage as user_profile
+    SELECT p.*, u.FullName as user_fullname, u.email as user_email, u.profileImage as user_profile, u.role as user_role
     FROM product p
     JOIN users u ON p.created_by = u.id
     WHERE p.product_id = $product_id
@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
 
 // Handle comment submission
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment'])) {
-    $user_id = $_GET['id']; // Replace with the actual logged-in user ID
+    $user_id = $_SESSION['id']; 
     $comment = $conn->real_escape_string($_POST['comment']);
     $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 0;
 
@@ -91,13 +91,26 @@ $conn->close();
                 </div>
                 <form action="cart_actions.php" method="post" class="add-to-cart-form" onsubmit="updateQuantity()">
                     <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                    <input type="hidden" name="quantity" id="quantity" value="1">
+                    <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($product['name']); ?>">
+                    <input type="hidden" name="product_price" value="<?php echo htmlspecialchars($product['price']); ?>">
+                    <input type="hidden" name="product_image" value="<?php echo htmlspecialchars($product['img1']); ?>">
+                    <input type="hidden" name="quantity" id="quantity" value="number">
                     <button type="submit" name="add_to_cart" class="AddToCart">Add To Cart</button>
                 </form>
                 <div class="product-Description">
                     <h2>Product Details</h2>
                     <p><?php echo nl2br(htmlspecialchars($product['description'])); ?></p>
                 </div>
+
+                <?php if ($_SESSION['id'] == $product['created_by'] || $_SESSION['role'] == 'admin') : ?>
+                <div class="product-actions">
+                    <br><a href="edit_product.php?id=<?php echo $product_id; ?>" class="edit-button">Edit</a>
+                    <form action="delete_product.php" method="post" class="delete-form">
+                        <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
+                        <button type="submit" name="delete_product" class="delete-button" onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
+                    </form>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -109,7 +122,6 @@ $conn->close();
             </div>
         </div>
     </main>
-
 
     <div class="lastPart">
         <div class="you-may-also-like">
@@ -134,7 +146,7 @@ $conn->close();
                             $price = $row['price'];
                             $img1 = isset($row['img1']) ? $row['img1'] : 'default_image_path.jpg';
 
-                            echo '    <a class="BoxCover" href="AddProductDetails.php?id=' . $product_id . '">';
+                            echo '    <a class="BoxCover" href="AddProductDetails.php?id=' . $product_id_similar . '">';
                             echo '<div class="box">';
                             echo '    <div class="imgbox">';
                             echo '        <img src="Product_Img_uploads/' . $img1 . '" alt="' . htmlspecialchars($name) . '" class="product-img">';
@@ -142,7 +154,7 @@ $conn->close();
                             echo '    <h2 class="product-title">' . htmlspecialchars($name) . '</h2><br>';
                             echo '    <span class="price">RS ' . htmlspecialchars($price) . '</span>';
                             echo '    <form action="shop.php" method="post">';
-                            echo '        <input type="hidden" name="product_id" value="' . $product_id . '">';
+                            echo '        <input type="hidden" name="product_id" value="' . $product_id_similar . '">';
                             echo '        <input type="hidden" name="name" value="' . htmlspecialchars($name) . '">';
                             echo '        <input type="hidden" name="price" value="' . htmlspecialchars($price) . '">';
                             echo '        <input type="hidden" name="img1" value="' . htmlspecialchars($img1) . '">';
