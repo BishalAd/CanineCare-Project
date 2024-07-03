@@ -56,7 +56,6 @@
                     $owner_image = htmlspecialchars($row['owner_image']);
         ?>
 
-                    <!-- Display dog details and owner information -->
                     <div class="dog-card">
                         <div class="product">
                             <div class="product-main-image">
@@ -65,7 +64,7 @@
                             <div class="product-details">
                                 <div class="product-title"><?php echo $name; ?></div>
                                 <div class="product-price">Rs <?php echo $price; ?></div>
-                                <button class="AdoptNow" onclick="openPaymentForm('<?php echo $dog_id; ?>', '<?php echo $name; ?>', '<?php echo $price; ?>')">Adopt Now</button>
+                                <button class="AdoptNow" onclick="togglePopup()">Adopt Now</button>
                                 <div class="product-description">
                                     <h2><br>Description</h2>
                                     <p class="age"><b>Age:</b> <?php echo $age; ?></p>
@@ -125,7 +124,6 @@
                             $img1 = isset($row['image']) ? $row['image'] : 'default_image_path.jpg';
                             $location = $row['location'];
 
-
                             echo ' <a href="dogdetails.php?dog_id=' . urlencode($dog_id) . '" class="details-button">';
                             echo '<div class="card">';
                             echo ' <div class="card-image">';
@@ -155,78 +153,52 @@
         </div>
     </main>
 
-    <!-- Payment Popup Form -->
-    <div id="paymentPopupForm" class="popup-form" style="display: none;">
+    <!-- Adoption Popup Form -->
+    <div class="popup" id="popupForm" style="display: none;">
         <div class="popup-content">
-            <span class="popup-close" onclick="closePaymentPopup()">&times;</span>
-            <div class="payment-container">
-                <h2>Choose Payment Method</h2>
-                <button id="khalti-payment-button">Pay with Khalti</button>
-                <form id="esewaForm" action="https://uat.esewa.com.np/epay/main" method="POST">
-                    <input id="esewa_tAmt" name="tAmt" type="hidden">
-                    <input id="esewa_amt" name="amt" type="hidden">
-                    <input value="0" name="txAmt" type="hidden">
-                    <input value="0" name="psc" type="hidden">
-                    <input value="0" name="pdc" type="hidden">
-                    <input value="YOUR_ESEWA_MERCHANT_ID" name="scd" type="hidden">
-                    <input id="esewa_pid" name="pid" type="hidden">
-                    <input value="payment_success.php" type="hidden" name="su">
-                    <input value="payment_failure.php" type="hidden" name="fu">
-                    <button type="submit">Pay with eSewa</button>
-                </form>
-            </div>
+            <span class="close" onclick="togglePopup()">&times;</span>
+            <h2>Adoption Form</h2>
+            <form id="adoptionForm" onsubmit="return handleSubmit(event)">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <input type="hidden" name="dog_id" value="<?php echo $dog_id; ?>">
+                <input type="submit" value="Submit">
+            </form>
         </div>
     </div>
 
-    <script src="https://khalti.com/static/khalti-checkout.js"></script>
+    <!-- Payment Popup Form -->
+    <div class="Paymentpopup" id="paymentPopup" style="display: none;">
+        <?php include 'paymentPopup.php'; ?>
+    </div>
+
     <script>
-        function openPaymentForm(dogId, dogName, price) {
-            document.getElementById('esewa_tAmt').value = price;
-            document.getElementById('esewa_amt').value = price;
-            document.getElementById('esewa_pid').value = "DOG_" + dogId + "_" + new Date().getTime();
-            document.getElementById('paymentPopupForm').style.display = 'block';
+        function togglePopup() {
+            var popup = document.getElementById('popupForm');
+            popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
         }
 
-        function closePaymentPopup() {
-            document.getElementById('paymentPopupForm').style.display = 'none';
-        }
-
-        var config = {
-            publicKey: "YOUR_KHALTI_PUBLIC_KEY",
-            productIdentity: "1234567890",
-            productName: "Service",
-            productUrl: "http://example.com/product",
-            eventHandler: {
-                onSuccess(payload) {
-                    var form = document.createElement('form');
-                    form.method = 'POST';
-                    form.action = 'payment_success.php';
-                    form.innerHTML = '<input type="hidden" name="payment_token" value="' + payload.token + '">' +
-                        '<input type="hidden" name="amount" value="' + payload.amount + '">' +
-                        '<input type="hidden" name="payment_method" value="khalti">';
-                    document.body.appendChild(form);
-                    form.submit();
-                },
-                onError(error) {
-                    console.log(error);
-                },
-                onClose() {
-                    console.log('Widget is closing');
-                }
+        function handleSubmit(event) {
+            event.preventDefault();
+            var adoptionForm = document.getElementById('adoptionForm');
+            if (adoptionForm.checkValidity()) {
+                togglePopup();
+                showPayment();
             }
-        };
+        }
 
-        var checkout = new KhaltiCheckout(config);
-
-        document.getElementById('khalti-payment-button').onclick = function() {
-            var price = document.getElementById('esewa_amt').value;
-            checkout.show({
-                amount: price * 100
-            });
-        };
+        function showPayment() {
+            var paymentPopup = document.getElementById('paymentPopup');
+            paymentPopup.style.display = 'block';
+        }
     </script>
 
     <script src="script.js"></script>
-    <?php include  'Footer.php' ?>
+    <?php include 'Footer.php'; ?>
 </body>
+
 </html>

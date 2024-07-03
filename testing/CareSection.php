@@ -233,8 +233,25 @@
 
     <!-- Payment Popup Form -->
     <div id="paymentPopupForm" class="popup-form">
-        <?php  include 'paymentPopupForm' ?>
-    </div>
+        <div class="popup-content">
+            <span class="popup-close" onclick="closePaymentPopup()">&times;</span>
+            <div class="payment-container">
+                <h2>Choose Payment Method</h2>
+                <button id="khalti-payment-button">Pay with Khalti</button>
+                <form id="esewa-form" action="https://uat.esewa.com.np/epay/main" method="POST">
+                    <input value="499" name="tAmt" type="hidden">
+                    <input value="499" name="amt" type="hidden">
+                    <input value="0" name="txAmt" type="hidden">
+                    <input value="0" name="psc" type="hidden">
+                    <input value="0" name="pdc" type="hidden">
+                    <input value="YOUR_ESEWA_MERCHANT_ID" name="scd" type="hidden">
+                    <input value="YOUR_INVOICE_NUMBER" name="pid" type="hidden">
+                    <input value="payment_success.php" type="hidden" name="su">
+                    <input value="payment_failure.php" type="hidden" name="fu">
+                    <button type="submit">Pay with eSewa</button>
+                </form>
+            </div>
+        </div>
     </div>
     <script src="https://khalti.com/static/khalti-checkout.js"></script>
     <script src="CareSection.js"></script>

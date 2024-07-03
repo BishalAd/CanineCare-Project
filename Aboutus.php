@@ -8,18 +8,17 @@
     <link rel="shortcut icon" type="x-con" href="Resources/logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" type="text/css" href="Aboutus.css">
+    <link rel="stylesheet" href="mail.css">
 </head>
 
 <body>
     <?php include 'nav.php'; ?>
-
     <div class="about-section">
         <div class="about-container">
             <div class="about-content-section">
                 <div class="about-title">
-                    <h1>About Us</h1>
+                    <h1> About Us</h1>
                 </div>
                 <div class="about-content">
                     <h3>Who we are</h3>
@@ -47,7 +46,7 @@
                         With your support, we can continue to make a difference in the lives of dogs in need.
                         Join us in our mission and help us give every dog the love and care they deserve.</p>
                     <div class="about-button">
-                        <a href="#">Read more</a>
+                        <a href="#"> Read more</a>
                     </div>
                     <div class="about-social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -62,113 +61,42 @@
         </div>
     </div>
 
-    <div id="mail" style="margin-left: 30%; margin-top: 50px;">
-        <div class="contact-form">
-            <h2>Contact Us</h2>
-            <form action="send_email.php" method="POST">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
+    <div class="contact-form">
+        <h2>Contact Us</h2>
 
-        <?php
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $name = htmlspecialchars($_POST['name']);
-            $message = htmlspecialchars($_POST['message']);
-            $to = "canineecare7@gmail.com"; // Replace with your email address
-            $subject = "New Message from Contact Form";
-            $body = "Name: $name\n\nMessage:\n$message";
-            $headers = "From: webmaster@example.com"; // Replace with your website's domain
-
-            if (mail($to, $subject, $body, $headers)) {
-                echo "Message sent successfully.";
-            } else {
-                echo "Failed to send message.";
-            }
-        }
-        ?>
-    </div>
-
-    <div id="team">
-        <section class="teams" id="teams">
-            <div class="max-width">
-                <h2 class="title">My teams</h2>
-                <div class="carousel owl-carousel">
-                    <div class="card">
-                        <div class="box">
-                            <img src="zoro.jpg" alt="">
-                            <div class="text">Ashish Gurung</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="sanji.jpg" alt="My Profile Image">
-                            <div class="text">Himal Thapa</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="ussop.jpg" alt="">
-                            <div class="text">Rabindra Poudel</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="image1.jpg" alt="">
-                            <div class="text">Bishal Adhikari</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="box">
-                            <img src="franky.jpg" alt="">
-                            <div class="text">Abhishek Hamal</div>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        </div>
-                    </div>
-                </div>
+        <form action="submit" method="POST">
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required>
             </div>
-        </section>
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" required></textarea>
+            </div>
+            <button type="submit">Send Message</button>
+        </form>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-KyZXEAg3QhqLMpG8r+8fhAXLRw0smIOmwV8AY5poTwja57f0SQY7gGQtsEkF+3eU0P6mTpoXf7znkXwQYoAhhQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-tS3n7VFL9WqF3GBFb9Y2O5iVrcOVsZXB2IDTxN1Lz8x0CRR5XBlU6u9e3M0MysD2XnqStmduDAET2P2P5TICsg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="scripts.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('.carousel').owlCarousel({
-                margin: 20,
-                loop: true,
-                autoplay: true,
-                autoplayTimeOut: 2000,
-                autoplayHoverPause: true,
-                responsive: {
-                    0: {
-                        items: 1,
-                        nav: false
-                    },
-                    600: {
-                        items: 2,
-                        nav: false
-                    },
-                    1000: {
-                        items: 3,
-                        nav: false
-                    }
-                }
-            });
-        });
-    </script>
 </body>
 
 </html>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = htmlspecialchars($_POST['name']);
+    $userEmail = htmlspecialchars($_POST['email']);
+    $message = htmlspecialchars($_POST['message']);
+    $to = "canineecare@gmail.com"; // Replace with your email address
+    $subject = "New Message from Contact Form";
+    $body = "Name: $name\nEmail: $userEmail\n\nMessage:\n$message";
+    $headers = "From: $userEmail";
+
+    if (mail($to, $subject, $body, $headers)) {
+        echo "<p style='color: green;'>Message sent successfully.</p>";
+    } else {
+        echo "<p style='color: red;'>Failed to send message.</p>";
+    }
+}
+?>

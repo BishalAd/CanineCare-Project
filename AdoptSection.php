@@ -329,10 +329,11 @@
                     <option value="Great Dane">Great Dane</option>
                     <option value="Boxer">Boxer</option>
                     <option value="others">Others</option>
-                </select>
+                </select><br><br>
+                <label for="dogImage" name="dogImage">Dog Image:</label>
                 <input type="file" name="dogImage" id="dogImage" required><br>
                 <textarea name="dogDescription" placeholder="Description" rows="4" required></textarea>
-                <input type="number" name="dogPrice" placeholder="Price (in USD)" required>
+                <input type="number" name="dogPrice" placeholder="Price" required>
                 <input type="text" name="dogVaccinationStatus" placeholder="Vaccination Status (e.g., Fully vaccinated)" required>
 
                 <label for="dogState">State:</label>

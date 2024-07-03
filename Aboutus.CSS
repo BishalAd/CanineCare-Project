@@ -1,19 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
 
-* {
-    padding: 0;
-    margin: 0;
+/* * {
+    padding: 0px;
+    margin: 0px;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-}
-
-body {
-    align-items: center;
-    height: 100vh;
-    background-color: #f5f5f5;
-    margin: 0;
-}
+} */
 
 .about-section {
     width: 100%;
@@ -66,189 +58,63 @@ body {
 
 .about-button a {
     background-color: #3d3d3d;
-    padding: 10px 20px;
-    border-radius: 25px;
-    color: white;
+    padding: 12px 40px;
     text-decoration: none;
-    font-weight: bold;
-    transition: all 0.3s ease;
+    color: #fff;
+    font-size: 25px;
+    letter-spacing: 1.5px;
 }
 
 .about-button a:hover {
-    background-color: #5d5d5d;
+    background-color: #a52a2a;
+    color: #fff;
 }
 
 .about-social {
-    margin-top: 50px;
+    margin: 40px 0;
 }
 
-.about-social a {
-    display: inline-block;
-    height: 50px;
-    width: 50px;
-    background-color: #3d3d3d;
-    margin: 10px 10px;
-    text-align: center;
-    line-height: 50px;
-    color: white;
-    font-size: 24px;
-    transition: all 0.3s ease;
+.about-social i {
+    color: #a52a2a;
+    font-size: 30px;
+    padding: 0 10px;
 }
 
-.about-social a:hover {
-    background-color: #5d5d5d;
+.about-social i:hover {
+    color: #3d3d3d;
 }
 
-.contact-form {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-}
+@media screen and (max-width: 768px) {
+    .about-container {
+        width: 90%;
+        padding-top: 50px;
+    }
 
-.contact-form h2 {
-    margin-bottom: 20px;
-}
+    .about-content-section {
+        width: 100%;
+        margin: auto;
+    }
 
-.contact-form .form-group {
-    margin-bottom: 15px;
-}
+    .about-image-section {
+        width: 100%;
+        margin-top: 50px;
+    }
 
-.contact-form label {
-    display: block;
-    margin-bottom: 5px;
-}
+    .about-title {
+        text-align: center;
+        font-size: 24px;
+    }
 
-.contact-form input,
-.contact-form textarea {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
+    .about-button {
+        text-align: center;
+    }
 
-.contact-form button {
-    background-color: #3d3d3d;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    .about-button a {
+        padding: 10px 30px;
+        font-size: 20px;
+    }
 
-.contact-form button:hover {
-    background-color: #5d5d5d;
-}
-
-.teams {
-    padding: 50px 0;
-    background: #f1f1f1;
-}
-
-#team{
-    box-sizing: border-box;
-    text-decoration: none;
-    scroll-behavior: smooth;
-    width: 100%;
-}
-
-.teams .title {
-    text-align: center;
-    font-size: 36px;
-    color: #333;
-    margin-bottom: 60px;
-    text-transform: uppercase;
-    font-weight: 600;
-    position: relative;
-}
-
-.carousel {
-    display: flex;
-    justify-content: center;
-}
-
-.card {
-    margin: 0 15px;
-    background: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-.card img {
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-}
-
-.card .text {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-    margin-top: 10px;
-}
-
-.card p {
-    font-size: 14px;
-    color: #777;
-    margin-top: 5px;
-}
-
-.card:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-}
-
-section{
-    padding: 100px 0;
-}
-.max-width{
-    max-width: 1300px;
-    padding: 0 80px;
-    margin: auto;
-}
-.about, .services, .skills, .teams, .contact, footer{
-    font-family: 'Poppins', sans-serif;
-}
-.about .about-content,
-.services .serv-content,
-.skills .skills-content,
-.contact .contact-content{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-}
-section .title{
-    position: relative;
-    text-align: center;
-    font-size: 40px;
-    font-weight: 500;
-    margin-bottom: 60px;
-    padding-bottom: 20px;
-    font-family: 'Ubuntu', sans-serif;
-}
-section .title::before{
-    content: "";
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    width: 180px;
-    height: 3px;
-    background: #111;
-    transform: translateX(-50%);
-}
-section .title::after{
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    font-size: 20px;
-    color: crimson;
-    padding: 0 5px;
-    background: #fff;
-    transform: translateX(-50%);
+    .about-social {
+        text-align: center;
+    }
 }

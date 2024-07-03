@@ -93,7 +93,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     echo '<h3>' . $FullName . '</h3>';
                     echo '</div>
                             <hr>
-                            <a href="#" class="sub-menu-link">
+                            <a href="edit_profile.php" class="sub-menu-link">
                                 <i class="fa-solid fa-user-edit"></i>
                                 <p>Edit Profile</p>
                                 <span>></span>

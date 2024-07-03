@@ -1,0 +1,186 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+}
+
+
+.sidebar h2 {
+    color: #fff;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #575757;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #dddddd;
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+table .fas {
+    color: #009879;
+    cursor: pointer;
+}
+
+table button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+table button:hover .fas {
+    color: #005f56;
+}
+
+/* Filter form styling */
+.filter-form {
+    margin-bottom: 20px;
+}
+
+.filter-form label {
+    font-weight: bold;
+}
+
+.filter-form select {
+    padding: 5px;
+    margin-left: 10px;
+}
+
+/* Dashboard stats styling */
+.dashboard-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat {
+    flex: 1 1 calc(33.333% - 20px);
+    background-color: #f4f4f4;
+    color: #fefefe;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.stat h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.stat p {
+    font-size: 2em;
+    margin: 0;
+}
+
+/* Stat hover effect */
+.stat:hover {
+    transform: translateY(-10px);
+}
+
+/* Stat color variations */
+.stat.blue { background-color: #4B49AC; }
+.stat.light-blue { background-color: #98BDFF; }
+.stat.dark-blue { background-color:  #7DA0FA; }
+.stat.purple { background-color: #7978E9; }
+.stat.red { background-color: #F3797E; }
+.stat.dark-purple { background-color: #bc79ba; }
+.stat.light-blue-accent { background-color: #113b51; }
+.stat.orange { background-color: #FFA500; }
+
+/* Detailed stats styling */
+.detailed-stats {
+    margin-top: 40px;
+}
+
+.detailed-stats h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.detail {
+    margin-bottom: 30px;
+}
+
+.detail h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.detail ul {
+    list-style: none;
+    padding: 0;
+}
+
+.detail li {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .stat {
+        flex: 1 1 100%;
+    }
+}

@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Failure</title>
-</head>
-<body>
-    <p class='error'>Payment verification failed!</p>
-</body>
-</html>
+<?php
+// Display or log the payment failure message
+echo "Payment failed. Please try again.";
+?>

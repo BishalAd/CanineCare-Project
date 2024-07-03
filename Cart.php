@@ -9,6 +9,26 @@ if (!isset($_SESSION['id'])) {
     header("Location: login.php");
     exit;
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['action'] == 'update_quantity') {
+    // Handle the AJAX request to update quantity
+    $index = intval($_POST['index']);
+    $quantity = intval($_POST['quantity']);
+
+    if (isset($_SESSION['cart'][$index])) {
+        $_SESSION['cart'][$index]['quantity'] = $quantity;
+    }
+
+    // Recalculate total price
+    $total_price = 0;
+    foreach ($_SESSION['cart'] as $item) {
+        $total_price += $item['price'] * $item['quantity'];
+    }
+
+    // Return the new total price as JSON
+    echo json_encode(['total_price' => $total_price]);
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +55,7 @@ if (!isset($_SESSION['id'])) {
             <h1>Shopping Cart</h1>
             <?php
             if (!empty($_SESSION['cart'])) {
-                echo '<form action="cart_actions.php" method="post">';
+                echo '<form id="cart-form" action="cart_actions.php" method="post">';
                 echo '<table>';
                 echo '<tr><th>Image</th><th>Name</th><th>Price</th><th>Quantity</th><th>Total</th><th>Action</th></tr>';
 
@@ -46,14 +66,14 @@ if (!isset($_SESSION['id'])) {
                     echo '<td><img src="Product_Img_uploads/' . htmlspecialchars($item['img1']) . '" alt="' . htmlspecialchars($item['name']) . '" class="cart-img"></td>';
                     echo '<td>' . htmlspecialchars($item['name']) . '</td>';
                     echo '<td>RS ' . htmlspecialchars($item['price']) . '</td>';
-                    echo '<td><input type="number" name="quantity[' . $index . ']" value="' . htmlspecialchars($item['quantity']) . '" min="1"></td>';
-                    echo '<td>RS ' . htmlspecialchars($item['price'] * $item['quantity']) . '</td>';
+                    echo '<td><input type="number" name="quantity[' . $index . ']" value="' . htmlspecialchars($item['quantity']) . '" min="1" data-index="' . $index . '" class="quantity-input"></td>';
+                    echo '<td class="item-total">RS ' . htmlspecialchars($item['price'] * $item['quantity']) . '</td>';
                     echo '<td><button type="submit" name="remove_item" value="' . $index . '">Remove</button></td>';
                     echo '</tr>';
                 }
 
                 echo '</table>';
-                echo '<div class="total-price">Total: RS ' . $total_price . '</div>';
+                echo '<div class="total-price">Total: RS <span id="total-price">' . $total_price . '</span></div>';
                 echo '<div class="cart-buttons">';
                 echo '<button type="submit" name="update_cart">Update Cart</button>';
                 echo '<a href="#billing-details" id="order-now-button" class="order-now-button">Order Now</a>';
@@ -127,6 +147,31 @@ if (!isset($_SESSION['id'])) {
             event.preventDefault(); // Prevent default anchor behavior
             document.getElementById('cart-section').classList.add('hidden');
             document.getElementById('order-section').classList.remove('hidden');
+        });
+
+        // JavaScript to handle quantity changes with AJAX
+        document.querySelectorAll('.quantity-input').forEach(input => {
+            input.addEventListener('change', function() {
+                const index = this.getAttribute('data-index');
+                const quantity = this.value;
+
+                // Make AJAX request to update quantity
+                const xhr = new XMLHttpRequest();
+                xhr.open('POST', '', true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const response = JSON.parse(xhr.responseText);
+                        document.getElementById('total-price').textContent = response.total_price;
+                        
+                        // Update the item total for this row
+                        const row = input.closest('tr');
+                        const price = parseFloat(row.querySelector('td:nth-child(3)').textContent.replace('RS ', ''));
+                        row.querySelector('.item-total').textContent = 'RS ' + (price * quantity).toFixed(2);
+                    }
+                };
+                xhr.send(`action=update_quantity&index=${index}&quantity=${quantity}`);
+            });
         });
     </script>
 

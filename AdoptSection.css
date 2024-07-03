@@ -249,7 +249,7 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1.5rem;
   margin-top: 2rem;
-  position: relative; /* Changed from sticky to relative */
+  position: relative;
   height: auto;
 }
 
@@ -267,6 +267,7 @@ body {
 }
 
 .form-container form input,
+.form-container form select,
 .form-container form textarea,
 .form-container form button {
   padding: 0.75rem;
@@ -277,6 +278,7 @@ body {
 }
 
 .form-container form input:focus,
+.form-container form select:focus,
 .form-container form textarea:focus,
 .form-container form button:focus {
   outline: none;
@@ -312,6 +314,28 @@ body {
 .form-container .close-btn:hover {
   opacity: 1;
 }
+
+.form-container label {
+  font-size: 18px;
+  line-height: 24px;
+  color: #333; /* Added color for label text */
+}
+
+.form-container select {
+  /* Added select styling */
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.form-container select:focus {
+  outline: none;
+  border-color: #ff676d;
+  box-shadow: 0 0 5px rgba(255, 103, 109, 0.5);
+}
+
 
 .form-popup {
   display: none;
